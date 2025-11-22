@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>P9 Nodes | The Fastest Solution on Solana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Montserrat', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              navy: {
+                950: '#020408', // Deepest black/blue
+                900: '#050A14',
+                800: '#0F172A',
+                700: '#1E293B',
+              },
+              cyan: {
+                400: '#00F0FF', // Neon Cyan
+                500: '#00D1FF',
+                900: '#083344',
+              },
+            },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
+              'float-delayed': 'float 6s ease-in-out 3s infinite',
+              'beam': 'beam 2.5s linear infinite',
+              'grid': 'grid 20s linear infinite',
+              'shimmer': 'shimmer 2s linear infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              beam: {
+                '0%': { transform: 'translateX(-100%)' },
+                '100%': { transform: 'translateX(400%)' },
+              },
+              grid: {
+                '0%': { transform: 'translateY(0)' },
+                '100%': { transform: 'translateY(40px)' },
+              },
+              shimmer: {
+                '0%': { backgroundPosition: '200% 0' },
+                '100%': { backgroundPosition: '-200% 0' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #f8fafc; /* Slate-50 for Light Mode default */
+        color: #0f172a; /* Slate-900 for Light Mode default */
+        overflow-x: hidden;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      
+      .dark body {
+        background-color: #020408;
+        color: #e2e8f0;
+      }
+      
+      /* Cyber Grid Background */
+      .bg-cyber-grid {
+        background-size: 40px 40px;
+        background-image: 
+          linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+        mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+      }
+      
+      /* Ensure dark mode grid is visible but subtle */
+      .dark .bg-cyber-grid {
+         background-image: 
+          linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+      }
+
+      /* Light mode grid - slightly darker lines */
+      .bg-cyber-grid-light {
+         background-image: 
+          linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+      }
+
+      .text-glow {
+        text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+      }
+
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .dark ::-webkit-scrollbar-track {
+        background: #020408;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1; /* Light mode scrollbar */
+        border-radius: 4px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #1E293B;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+      .dark ::-webkit-scrollbar-thumb:hover {
+        background: #334155;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-slate-50 dark:bg-navy-950 transition-colors duration-300">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
