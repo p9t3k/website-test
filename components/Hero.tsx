@@ -31,7 +31,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-slate-900 dark:text-white">
-            The fastest solution on the Solana blockchain
+            The best solution on the Solana blockchain
           </h1>
           
           <p className="text-base md:text-lg lg:text-xl text-slate-600 dark:text-gray-400 max-w-lg leading-relaxed font-light mx-auto lg:mx-0">
