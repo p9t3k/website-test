@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react';
 
@@ -73,14 +74,20 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isDark, toggleTheme }) => {
                 flex items-center justify-between
                 ${transitionClass} relative
                 h-16 md:h-20
+                
                 /* Liquid Glass Effect */
-                bg-white/70 dark:bg-[#050A14]/70
+                bg-white/95 dark:bg-[#050A14]/40
                 backdrop-blur-2xl
                 backdrop-saturate-150
-                border border-white/40 dark:border-white/10
-                shadow-[0_8px_32px_0_rgba(31,38,135,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]
+                
+                /* Borders */
+                border border-white/40 dark:border-white/5
+                
+                /* Shadows */
+                shadow-[0_8px_32px_0_rgba(31,38,135,0.05),0_0_20px_0_rgba(59,130,246,0.1)]
+                dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.5)]
+                
                 rounded-full
-                /* Adjusted Padding: px-6 in compact mode prevents logo from hitting the edge */
                 ${isCompact 
                   ? 'w-[90%] md:w-[85%] lg:w-[80%] xl:w-[75%] max-w-3xl px-6 gap-3' 
                   : 'w-[95%] md:w-[96%] lg:w-[94%] xl:w-[90%] max-w-5xl px-4 md:px-6 lg:px-8 gap-2 md:gap-4 lg:gap-8'
@@ -98,70 +105,77 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isDark, toggleTheme }) => {
             <div 
                 className={`
                     overflow-hidden ${transitionClass}
-                    /* Hide text earlier on tablet compact mode to save space */
                     ${isCompact ? 'w-0 opacity-0 hidden xl:block' : 'w-[80px] md:w-[100px] opacity-100'}
                 `}
             >
-                <span className="font-bold tracking-tight text-slate-900 dark:text-white whitespace-nowrap text-base md:text-xl block">
+                <span className="font-bold tracking-tight text-black dark:text-white whitespace-nowrap text-base md:text-xl block">
                  P9 Nodes
                 </span>
             </div>
           </div>
 
-          <div className={`hidden md:flex items-center font-medium text-sm md:text-base text-slate-600 dark:text-gray-300 h-full ${transitionClass} ${isCompact ? 'gap-4 lg:gap-6' : 'gap-4 md:gap-6 lg:gap-8'}`}>
-            <button onClick={() => onNavigate('features')} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Features</button>
+          {/* Desktop Navigation Links */}
+          <div className={`hidden md:flex items-center font-semibold text-sm md:text-base h-full ${transitionClass} ${isCompact ? 'gap-4 lg:gap-6' : 'gap-4 md:gap-6 lg:gap-8'}`}>
+            <button onClick={() => onNavigate('features')} className="text-black dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Features</button>
             
             <div className="relative group h-full flex items-center">
-                <button className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors h-full py-2">
+                <button className="flex items-center gap-1 text-black dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors h-full py-2">
                     Technology
                     <ChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
                 </button>
                 
                 <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out transform translate-y-2 group-hover:translate-y-0">
-                     <div className="bg-white/80 dark:bg-navy-950/90 backdrop-blur-2xl border border-white/40 dark:border-white/10 shadow-2xl rounded-2xl p-2 w-56 overflow-hidden ring-1 ring-black/5">
-                        <button onClick={() => handleNavClick('octopus')} className="w-full text-left px-3 py-3 hover:bg-white/60 dark:hover:bg-white/5 rounded-xl text-slate-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all flex flex-col gap-0.5 group/item">
-                            <span className="font-bold text-sm text-slate-900 dark:text-white group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400">Octopus Mode</span>
+                     <div className="bg-white/95 dark:bg-navy-950/90 backdrop-blur-2xl border border-white/40 dark:border-white/10 shadow-2xl rounded-2xl p-2 w-56 overflow-hidden ring-1 ring-black/5">
+                        <button onClick={() => handleNavClick('octopus')} className="w-full text-left px-3 py-3 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl text-black dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all flex flex-col gap-0.5 group/item">
+                            <span className="font-bold text-sm text-black dark:text-white group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400">Octopus Mode</span>
                             <span className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-wider">Network Layer</span>
                         </button>
-                        <button onClick={() => handleNavClick('shreds')} className="w-full text-left px-3 py-3 hover:bg-white/60 dark:hover:bg-white/5 rounded-xl text-slate-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all flex flex-col gap-0.5 group/item">
-                            <span className="font-bold text-sm text-slate-900 dark:text-white group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400">Decoded Shreds</span>
+                        <button onClick={() => handleNavClick('shreds')} className="w-full text-left px-3 py-3 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl text-black dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all flex flex-col gap-0.5 group/item">
+                            <span className="font-bold text-sm text-black dark:text-white group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400">Decoded Shreds</span>
                             <span className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-wider">Data Layer</span>
                         </button>
                      </div>
                 </div>
             </div>
             
-            <button onClick={() => onNavigate('pricing')} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Plans</button>
-            <button onClick={() => onNavigate('faq')} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">FAQ</button>
+            <button onClick={() => onNavigate('pricing')} className="text-black dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Plans</button>
+            <button onClick={() => onNavigate('faq')} className="text-black dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">FAQ</button>
           </div>
 
           <div className="hidden md:flex items-center gap-3 shrink-0">
               
-              {/* Desktop Theme Toggle - Moved inside navbar */}
+              {/* Theme Toggle */}
               <button 
                 onClick={toggleTheme}
-                className="p-2 rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
+                className="p-2 rounded-full text-black dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
                 aria-label="Toggle Theme"
               >
                  {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
 
-              {/* Discord Button - Enhanced Integration */}
+              {/* Discord Button */}
               <button 
                 onClick={handleDiscordClick}
                 className={`
                   relative group flex items-center justify-center overflow-hidden
-                  border border-[#5865F2]
-                  bg-[#5865F2]/5 dark:bg-[#5865F2]/10
-                  text-[#5865F2] dark:text-[#8CA3FF]
-                  hover:bg-[#5865F2] hover:text-white dark:hover:text-white
+                  
+                  /* Light Mode: Purple Text/Border/Logo -> Solid Blurple Hover */
+                  bg-slate-100 hover:bg-[#5865F2]
+                  text-[#5865F2] hover:text-white
+                  border border-[#5865F2]/30 hover:border-[#5865F2]
+                  
+                  /* Dark Mode: Glassy Idle -> Glassy Hover (Reverted solid hover) */
+                  dark:bg-[#5865F2]/10 dark:hover:bg-[#5865F2]/20
+                  dark:text-[#8CA3FF] dark:hover:text-white
+                  dark:border-[#5865F2]
+                  
                   font-bold text-xs md:text-sm 
                   ${transitionClass} rounded-full 
                   ${isCompact ? 'w-10 h-10 p-0' : 'px-5 py-2 md:px-6 md:py-2 gap-2'}
                 `}
                 title="Join Discord"
               >
-                {/* Shine Effect */}
+                {/* Shine Effect - Visible primarily on hover when background becomes solid/dark */}
                 <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
                 
                 <div className={`relative z-10 flex items-center justify-center ${isCompact ? 'w-full h-full' : ''}`}>
@@ -178,12 +192,12 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isDark, toggleTheme }) => {
           <div className="flex md:hidden items-center gap-2">
              <button 
                 onClick={toggleTheme}
-                className="p-2 rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
+                className="p-2 rounded-full text-black dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
               >
                  {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
               <button 
-                className="text-slate-900 dark:text-white p-2"
+                className="text-black dark:text-white p-2"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
                 {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -195,32 +209,32 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isDark, toggleTheme }) => {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-[60] bg-white/95 dark:bg-navy-950/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 animate-in fade-in duration-200">
              <button 
-                className="absolute top-8 right-8 text-slate-900 dark:text-white p-2"
+                className="absolute top-8 right-8 text-black dark:text-white p-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <X className="w-8 h-8" />
               </button>
             
-            <button onClick={() => handleNavClick('features')} className="text-2xl text-slate-700 dark:text-gray-300 hover:text-blue-500 font-medium">Features</button>
+            <button onClick={() => handleNavClick('features')} className="text-2xl text-black dark:text-gray-300 hover:text-blue-500 font-medium">Features</button>
             
             <div className="flex flex-col items-center w-full">
                 <button 
                     onClick={() => setIsTechMobileOpen(!isTechMobileOpen)} 
-                    className="text-2xl text-slate-700 dark:text-gray-300 hover:text-blue-500 font-medium flex items-center gap-2"
+                    className="text-2xl text-black dark:text-gray-300 hover:text-blue-500 font-medium flex items-center gap-2"
                 >
                     Technology <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isTechMobileOpen ? 'rotate-180' : ''}`} />
                 </button>
                 
                 <div className={`flex flex-col items-center gap-4 overflow-hidden transition-all duration-300 ${isTechMobileOpen ? 'max-h-40 mt-4 opacity-100' : 'max-h-0 opacity-0'}`}>
-                    <button onClick={() => handleNavClick('octopus')} className="text-lg text-slate-600 dark:text-gray-400 hover:text-blue-500">Octopus Mode</button>
-                    <button onClick={() => handleNavClick('shreds')} className="text-lg text-slate-600 dark:text-gray-400 hover:text-blue-500">Decoded Shreds</button>
+                    <button onClick={() => handleNavClick('octopus')} className="text-lg text-slate-700 dark:text-gray-400 hover:text-blue-500">Octopus Mode</button>
+                    <button onClick={() => handleNavClick('shreds')} className="text-lg text-slate-700 dark:text-gray-400 hover:text-blue-500">Decoded Shreds</button>
                 </div>
             </div>
 
-            <button onClick={() => handleNavClick('pricing')} className="text-2xl text-slate-700 dark:text-gray-300 hover:text-blue-500 font-medium">Plans</button>
-            <button onClick={() => handleNavClick('faq')} className="text-2xl text-slate-700 dark:text-gray-300 hover:text-blue-500 font-medium">FAQ</button>
+            <button onClick={() => handleNavClick('pricing')} className="text-2xl text-black dark:text-gray-300 hover:text-blue-500 font-medium">Plans</button>
+            <button onClick={() => handleNavClick('faq')} className="text-2xl text-black dark:text-gray-300 hover:text-blue-500 font-medium">FAQ</button>
             
-            {/* Mobile Discord Button - Optimized Size */}
+            {/* Mobile Discord Button */}
             <button 
                 onClick={handleDiscordClick}
                 className="flex items-center justify-center gap-2 bg-[#5865F2] text-white px-6 py-3 font-bold text-base rounded-full shadow-[0_0_20px_rgba(88,101,242,0.4)] mt-4 hover:bg-[#4752C4] transition-colors"
