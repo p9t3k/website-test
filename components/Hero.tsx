@@ -30,11 +30,11 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-sans leading-[1.1] tracking-tight text-slate-900 dark:text-white">
-            The fastest solution on the Solana blockchain
+            The best solution on the Solana blockchain
           </h1>
           
           <p className="text-base md:text-lg lg:text-xl text-slate-600 dark:text-gray-400 max-w-lg leading-relaxed font-light mx-auto lg:mx-0">
-            RPCs, gRPCs and the fastest shreds. Engineered with <strong className="text-blue-600 dark:text-blue-400 font-medium">Octopus Mode</strong> for increased bandwith and ultra-low latency.
+            RPC Nodes, gRPC streaming and the fastest shreds. Engineered with <strong className="text-blue-600 dark:text-blue-400 font-medium">Octopus Mode</strong> for increased bandwith and ultra-low latency.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
@@ -42,7 +42,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
               onClick={onCtaClick}
               className="group flex items-center justify-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-navy-950 px-8 py-4 font-bold text-sm transition-all rounded-full shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:bg-blue-600 dark:hover:bg-blue-500 hover:text-white dark:hover:text-white"
             >
-              Secure access
+              Buy Now
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>

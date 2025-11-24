@@ -108,13 +108,13 @@ const DecodedShreds: React.FC = () => {
                 <div>
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-xs font-bold tracking-wider text-blue-600 dark:text-blue-400 mb-6">
                         <Zap className="w-3 h-3" />
-                        TURBINE PROTOCOL
+                        CUSTOM DECODER
                     </div>
                     <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
                         Decoded <span className="text-blue-600 dark:text-blue-500">Shreds</span>
                     </h2>
                     <p className="text-lg text-slate-600 dark:text-gray-400 leading-relaxed font-light">
-                        Stop waiting for blocks to be built. Access raw data straight from the Turbine protocol. We intercept shreds, decode them instantly, and stream them to you before the rest of the network even sees the block.
+                        Stop waiting for blocks to be built. Access decoded data straight from our sources. We intercept shreds, decode them instantly, and stream them to you before the rest of the network even sees the block.
                     </p>
                 </div>
 
@@ -125,8 +125,8 @@ const DecodedShreds: React.FC = () => {
                             <FileCode className="w-6 h-6 text-slate-500 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
                         </div>
                         <div>
-                            <h4 className="font-bold text-slate-900 dark:text-white text-base mb-1">Zero-Copy Parsing</h4>
-                            <p className="text-sm text-slate-600 dark:text-gray-400 leading-snug">Pre-parsed data structures ready for your bot logic.</p>
+                            <h4 className="font-bold text-slate-900 dark:text-white text-base mb-1">Private Sources</h4>
+                            <p className="text-sm text-slate-600 dark:text-gray-400 leading-snug">Stream data from multiple private sources, faster.</p>
                         </div>
                     </div>
                     <div className="bg-white dark:bg-navy-900/30 border border-slate-200 dark:border-white/5 p-6 rounded-2xl flex items-center gap-5 hover:bg-slate-50 dark:hover:bg-navy-900/50 hover:border-slate-300 dark:hover:border-white/10 transition-colors shadow-sm cursor-default">
@@ -134,7 +134,7 @@ const DecodedShreds: React.FC = () => {
                             <Cpu className="w-6 h-6 text-slate-500 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
                         </div>
                         <div>
-                            <h4 className="font-bold text-slate-900 dark:text-white text-base mb-1">Latency Elimination</h4>
+                            <h4 className="font-bold text-slate-900 dark:text-white text-base mb-1">Low Latency</h4>
                             <p className="text-sm text-slate-600 dark:text-gray-400 leading-snug">Bypass the ~400ms block building time entirely.</p>
                         </div>
                     </div>
@@ -148,9 +148,9 @@ const DecodedShreds: React.FC = () => {
                     <div className="mb-8">
                         <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
                             <Layers className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                            Global Propagation
+                            Benchmark
                         </h3>
-                        <p className="text-slate-500 dark:text-gray-400 text-sm">Speed comparison across network layers.</p>
+                        <p className="text-slate-500 dark:text-gray-400 text-sm">Speed comparison across data streaming services.</p>
                     </div>
 
                     {/* Comparison Visualization */}
@@ -160,7 +160,7 @@ const DecodedShreds: React.FC = () => {
                         <div className="relative group/bar">
                             <div className="flex justify-between text-xs font-bold text-blue-600 dark:text-blue-400 mb-2 uppercase tracking-wider">
                                 <span className="flex items-center gap-2"><Zap className="w-3 h-3 fill-blue-600 dark:fill-blue-400" /> P9 Decoded Shreds</span>
-                                <span>12ms</span>
+                                <span>Fastest</span>
                             </div>
                             <div className="h-14 bg-slate-100 dark:bg-navy-950/50 rounded-xl border border-blue-300 dark:border-blue-500/50 relative overflow-hidden flex items-center px-4 shadow-[0_0_15px_rgba(59,130,246,0.2)] group-hover/bar:shadow-[0_0_25px_rgba(59,130,246,0.4)] transition-shadow duration-500">
                                 <div className="absolute inset-0 w-full bg-blue-500/5"></div>
@@ -177,9 +177,9 @@ const DecodedShreds: React.FC = () => {
 
                         {/* Standard RPC */}
                         <div className="relative opacity-90 group/bar">
-                            <div className="flex justify-between text-xs font-bold text-slate-500 dark:text-gray-400 mb-2 uppercase tracking-wider">
-                                <span>Standard gRPC</span>
-                                <span>240ms</span>
+                            <div className="flex justify-between text-xs font-bold text-slate-500 dark:text-gray-400 mb-2 tracking-wider">
+                                <span>Jito Shredstream</span>
+                                <span>P50: 2ms</span>
                             </div>
                             <div className="h-12 bg-slate-100 dark:bg-navy-950/50 rounded-xl border border-slate-200 dark:border-white/20 relative overflow-hidden flex items-center px-4">
                                 <div className="w-full h-1.5 bg-slate-200 dark:bg-navy-800 rounded-full overflow-hidden">
@@ -190,9 +190,9 @@ const DecodedShreds: React.FC = () => {
 
                          {/* Public RPC */}
                          <div className="relative opacity-60 group/bar">
-                            <div className="flex justify-between text-xs font-bold text-slate-400 dark:text-gray-500 mb-2 uppercase tracking-wider">
-                                <span>Public RPC</span>
-                                <span>800ms+</span>
+                            <div className="flex justify-between text-xs font-bold text-slate-400 dark:text-gray-500 mb-2 tracking-wider">
+                                <span>Average gRPC</span>
+                                <span>P50: 20ms</span>
                             </div>
                             <div className="h-12 bg-slate-50 dark:bg-navy-950/50 rounded-xl border border-slate-200 dark:border-white/10 relative overflow-hidden flex items-center px-4">
                                 <div className="w-full h-1.5 bg-slate-200 dark:bg-navy-800 rounded-full overflow-hidden">

@@ -1,4 +1,3 @@
-
 import React, { useRef, useState, MouseEvent } from 'react';
 import { FEATURES } from '../constants';
 import { Zap, Activity, Database, Server, Network } from 'lucide-react';
@@ -24,7 +23,7 @@ const CardPattern: React.FC<{ type: string }> = ({ type }) => {
     case 'hardware':
       // Pattern: Stylized Server Racks (Light Blue Theme)
       return (
-        <svg className={`${commonClasses} text-blue-400 dark:text-blue-500 opacity-[0.12] dark:opacity-[0.1] group-hover:opacity-30`} xmlns="http://www.w3.org/2000/svg">
+        <svg className={`${commonClasses} text-blue-400 dark:text-blue-500 opacity-[0.2] dark:opacity-[0.15] group-hover:opacity-40`} xmlns="http://www.w3.org/2000/svg">
            <defs>
              <pattern id="server-pattern" x="0" y="0" width="40" height="24" patternUnits="userSpaceOnUse">
                 <rect x="2" y="2" width="36" height="20" rx="2" fill="none" stroke="currentColor" strokeWidth="1" />
@@ -42,7 +41,7 @@ const CardPattern: React.FC<{ type: string }> = ({ type }) => {
     case 'octopus':
        // Pattern: Hub & Spoke Mesh (Purple Theme) - IMPROVED
        return (
-        <svg className={`${commonClasses} text-purple-500 dark:text-purple-400 opacity-[0.2] dark:opacity-[0.15] group-hover:opacity-40`} viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+        <svg className={`${commonClasses} text-purple-500 dark:text-purple-400 opacity-[0.25] dark:opacity-[0.2] group-hover:opacity-50`} viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
            <defs>
              <marker id="dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4">
                <circle cx="5" cy="5" r="5" fill="currentColor" />
@@ -101,7 +100,7 @@ const CardPattern: React.FC<{ type: string }> = ({ type }) => {
     case 'shreds':
       // Pattern: Chevron Arrows >>> (Cyan Theme)
       return (
-        <svg className={`${commonClasses} text-cyan-500 dark:text-cyan-400 opacity-[0.15] dark:opacity-[0.12] group-hover:opacity-40`} xmlns="http://www.w3.org/2000/svg">
+        <svg className={`${commonClasses} text-cyan-500 dark:text-cyan-400 opacity-[0.25] dark:opacity-[0.2] group-hover:opacity-50`} xmlns="http://www.w3.org/2000/svg">
            <defs>
              <pattern id="chevron-pattern" x="0" y="0" width="60" height="40" patternUnits="userSpaceOnUse">
                 <g transform="translate(10, 10)">
@@ -118,7 +117,7 @@ const CardPattern: React.FC<{ type: string }> = ({ type }) => {
     case 'parsing':
       // Pattern: Binary Code (Light Blue Theme)
       return (
-        <svg className={`${commonClasses} text-blue-400 dark:text-blue-500 opacity-[0.12] dark:opacity-[0.1] group-hover:opacity-30`} xmlns="http://www.w3.org/2000/svg">
+        <svg className={`${commonClasses} text-blue-400 dark:text-blue-500 opacity-[0.2] dark:opacity-[0.15] group-hover:opacity-40`} xmlns="http://www.w3.org/2000/svg">
            <defs>
              <pattern id="binary-pattern" x="0" y="0" width="100" height="50" patternUnits="userSpaceOnUse">
                <text x="0" y="20" fontSize="14" fontFamily="monospace" fontWeight="bold" fill="currentColor" opacity="0.8">{`{ }`}</text>
@@ -250,22 +249,22 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, className = '' }) =>
           {/* Base Background Color */}
           <div className={`absolute inset-0 ${bgClass} transition-colors duration-300`} />
 
-          {/* Internal Glow/Backlight */}
-          <div className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none
-              ${highlightColor === 'purple' ? 'from-purple-500/5 to-transparent' : ''}
-              ${highlightColor === 'cyan' ? 'from-cyan-500/5 to-transparent' : ''}
-              ${highlightColor === 'blue' ? 'from-blue-500/5 to-transparent' : ''}
+          {/* Internal Glow/Backlight - Updated for persistency & raised opacity */}
+          <div className={`absolute inset-0 bg-gradient-to-br opacity-50 dark:opacity-40 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none
+              ${highlightColor === 'purple' ? 'from-purple-500/20 to-transparent' : ''}
+              ${highlightColor === 'cyan' ? 'from-cyan-500/20 to-transparent' : ''}
+              ${highlightColor === 'blue' ? 'from-blue-500/20 to-transparent' : ''}
           `} />
 
           {/* Specific Stylized Pattern */}
           <CardPattern type={feature.id} />
 
           {/* 
-             RESTORED: Bottom Gradient for Readability 
-             This sits inside the overflow-hidden visual container.
-             We fade to the background color to ensure text readability at the bottom.
+             RESTORED & ENHANCED: Bottom Gradient for Readability 
+             Increased height to 60% and opacity to provide a stronger, darker backdrop for text on hover.
+             Matches 'navy-950' in dark mode for seamless blending.
           */}
-          <div className={`absolute bottom-0 left-0 right-0 h-2/5 pointer-events-none bg-gradient-to-t from-slate-50 via-slate-50/80 to-transparent dark:from-navy-950 dark:via-navy-950/80 dark:to-transparent opacity-90`} />
+          <div className={`absolute bottom-0 left-0 right-0 h-3/5 pointer-events-none bg-gradient-to-t from-slate-50 via-slate-50/95 to-transparent dark:from-[#020408] dark:via-[#020408]/95 dark:to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300`} />
       </div>
 
       {/* 
@@ -342,10 +341,10 @@ const Features: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-end md:items-center mb-12 md:mb-16 gap-8">
           <div className="flex-1">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white tracking-tight">
-              Proprietary <span className="text-blue-600 dark:text-blue-500">Infrastructure</span>
+              Key <span className="text-blue-600 dark:text-blue-500">Features</span>
             </h2>
             <p className="text-slate-600 dark:text-gray-400 max-w-xl text-base md:text-lg font-light">
-              We don't resell cloud instances. We operate high-performance private metal optimized for heavy RPC calls and sniping.
+            Technology is not magic: our service is built from the ground up with your needs in mind.
             </p>
           </div>
           

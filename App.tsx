@@ -9,7 +9,6 @@ import GlobalNetwork from './components/GlobalNetwork';
 import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
 import CheckoutModal from './components/CheckoutModal';
-import SupportChat from './components/SupportChat';
 import Logo from './components/Logo';
 import FooterText from './components/FooterText';
 import { PageState, Plan } from './types';
@@ -73,8 +72,6 @@ const App: React.FC = () => {
         <FAQ />
       </main>
       
-      <SupportChat />
-
       <footer className="bg-white dark:bg-navy-950 border-t border-slate-200 dark:border-white/5 pt-16 relative z-10 transition-colors duration-300 text-sm overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 pb-0">
             {/* Main Footer Container - Flex Layout with Categories */}
@@ -178,3 +175,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+    

@@ -95,10 +95,10 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
 
   // Specific visual features map
   const CORE_FEATURES = [
-    { text: 'Zero-Latency Octopus Routing', icon: Network },
-    { text: 'MEV-Protected Stream', icon: Shield },
-    { text: 'Yellowstone gRPC & Geyser', icon: Database },
-    { text: 'Global Private Hardware', icon: Cpu },
+    { text: 'Low-Latency Octopus Routing', icon: Network },
+    { text: 'MEV-Protected SendTx', icon: Shield },
+    { text: 'Yellowstone gRPC & Indexes', icon: Database },
+    { text: 'Global Infrastructure', icon: Cpu },
   ];
 
   return (
@@ -172,7 +172,7 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
                             <Activity className="w-5 h-5 text-white" />
                         </div>
                         <h3 className="text-lg font-bold uppercase tracking-widest text-slate-900 dark:text-white">
-                            System Configuration
+                            CLUSTER CONFIGURATION
                         </h3>
                     </div>
                     
@@ -306,17 +306,17 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
                     <div className="p-3.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#0A0E17] relative overflow-hidden cursor-default">
                          <div className="flex items-center justify-between mb-2">
                             <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider flex items-center gap-2">
-                                <Zap className="w-3 h-3" /> RPC Protocol
+                                <Zap className="w-3 h-3" /> RPC Rate limits
                             </div>
                          </div>
                          <div className="flex items-center justify-between">
                              <div>
-                                 <span className="text-xs text-slate-400 block">Throughput</span>
+                                 <span className="text-xs text-slate-400 block">SendTx</span>
                                  <span className="font-mono font-bold text-slate-900 dark:text-white text-base">300 TPS</span>
                              </div>
                              <div className="h-8 w-px bg-slate-200 dark:bg-white/10"></div>
                              <div className="text-right">
-                                 <span className="text-xs text-slate-400 block">Requests</span>
+                                 <span className="text-xs text-slate-400 block">Monitoring</span>
                                  <span className="font-mono font-bold text-slate-900 dark:text-white text-base">1500 RPS</span>
                              </div>
                          </div>

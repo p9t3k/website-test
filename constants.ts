@@ -27,8 +27,8 @@ export const PLANS: Plan[] = [
 export const FEATURES: ServiceFeature[] = [
   {
     id: 'hardware',
-    title: 'Private Hardware',
-    description: 'Hosted on private metal in Frankfurt and NYC. Lowest average ping to validators worldwide.',
+    title: 'Premium quality hardware',
+    description: 'Hosted on bare metal infrastructure, our nodes capitalize on the lowest average ping to validators worldwide, thanks to our tailor made network.',
     icon: 'Server'
   },
   {
@@ -40,13 +40,13 @@ export const FEATURES: ServiceFeature[] = [
   {
     id: 'shreds',
     title: 'Decoded Shreds',
-    description: 'Access raw data straight from the Turbine protocol. We intercept shreds and decode them instantly.',
+    description: 'Stream decoded data straight from our shreds sources.',
     icon: 'Zap'
   },
   {
     id: 'parsing',
-    title: 'Smart Parsing',
-    description: 'Pre-parsed data structures ready for your bot logic. Zero-copy parsing for maximum speed.',
+    title: 'Index Data',
+    description: 'Heavy calls are fully supported. Low reponse times, no matter your demands.',
     icon: 'Activity'
   }
 ];
@@ -55,19 +55,27 @@ export const SYSTEM_INSTRUCTION = "You are NexusBot, an advanced AI assistant fo
 
 export const FAQS: FAQItem[] = [
   {
-    question: "How do I access the node?",
-    answer: "Access is token-gated. You must purchase a P9 Node NFT from a secondary marketplace (Tensor or Magic Eden). Holding the NFT allows you to subscribe to the monthly service."
+    question: "How does the token-gated access work?",
+    answer: "Access to the P9 Nodes infrastructure is exclusively available to holders of our NFT License. You must purchase a P9 Node NFT from a secondary marketplace like Tensor or Magic Eden. Once you hold the NFT in your wallet, you can connect to our dashboard to view your private endpoints instantly. No setup required."
   },
   {
-    question: "What is the total cost?",
-    answer: "The cost consists of the one-time market price of the NFT (variable) plus a monthly renewal fee of 400 USDC to maintain active node access."
+    question: "What is the complete pricing structure?",
+    answer: "The cost is twofold: First, the one-time acquisition cost of the NFT License on the secondary market (price varies based on supply and demand). Second, a monthly renewal fee of 400 USDC is required to keep your node access active. This fee covers hardware maintenance and bandwidth costs."
   },
   {
-    question: "What is Octopus Mode?",
-    answer: "Octopus Mode is our proprietary architectural framework designed to minimize transaction landing times on Solana. It functions like a specialized CDN for the blockchain."
+    question: "What makes Octopus Mode faster than standard RPCs?",
+    answer: "Octopus Mode acts as a specialized blockchain CDN. Instead of sending transactions directly to the current leader (who might be overwhelmed), our architecture routes your traffic through our internal high-speed private network directly to the next scheduled leaders and key validators. This minimizes jitter and significantly increases the probability of landing in the next block."
   },
   {
-    question: "Where are your servers located?",
-    answer: "We own and operate private hardware in Frankfurt and New York City to ensure optimal latency to the majority of the validator network."
+    question: "Do you support Yellowstone gRPC and Geyser?",
+    answer: "Yes, all plans include full access to Yellowstone gRPC and Geyser plugins. You can subscribe to account updates, slot updates, and transaction streams with a limit of up to 600 pubkeys and 3 simultaneous connections, making it perfect for trading bots and indexers."
+  },
+  {
+    question: "Why use private hardware over cloud providers?",
+    answer: "Cloud providers (AWS, GCP) often introduce virtualization latency and 'noisy neighbor' issues. We own and operate bare-metal servers in Frankfurt and NYC—strategically located next to major validator clusters. This physical proximity ensures the lowest possible ping times to the network backbone."
+  },
+  {
+    question: "Can I resell my access?",
+    answer: "Yes. Since access is tied to the NFT, you can sell your P9 Node NFT on any marketplace at any time. The new owner will inherit the right to access the infrastructure, though they will need to maintain the monthly renewal fee."
   }
 ];
