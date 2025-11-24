@@ -178,27 +178,52 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, className = '' }) =>
   let bgClass = "";
   let iconBoxClass = "";
   let textClass = "";
-  let highlightColor = ""; // For shadow/border hover
+  
+  // Variables for separate elements
+  let ringClass = ""; 
+  let shadowHoverClass = "";
+  let iconHoverClasses = "";
+  let highlightColor = "";
 
   if (isOctopus) {
     // PURPLE THEME
-    bgClass = "bg-gradient-to-b from-purple-50 to-white dark:from-purple-900/20 dark:to-navy-900/80 border-purple-200 dark:border-purple-500/30";
-    iconBoxClass = "bg-purple-100 dark:bg-purple-500/20 border-purple-200 dark:border-purple-500/30 text-purple-600 dark:text-purple-400";
-    textClass = "text-purple-900 dark:text-purple-100";
     highlightColor = "purple";
+    bgClass = "bg-gradient-to-b from-purple-50 to-white dark:from-purple-900/20 dark:to-navy-900/80";
+    ringClass = "ring-purple-200 dark:ring-purple-500/30 group-hover:ring-purple-300 dark:group-hover:ring-purple-400/50";
+    shadowHoverClass = "hover:shadow-purple-500/20";
+    
+    iconBoxClass = "bg-purple-100/80 backdrop-blur-md shadow-lg dark:bg-purple-500/20 border-purple-200 dark:border-purple-500/30 text-purple-600 dark:text-purple-400";
+    textClass = "text-purple-900 dark:text-purple-100";
+    
+    iconHoverClasses = "group-hover:bg-purple-500 dark:group-hover:bg-purple-500/20 group-hover:border-purple-400 dark:group-hover:border-purple-400/50 group-hover:shadow-purple-500/40";
+  
   } else if (isShreds) {
     // CYAN THEME
-    bgClass = "bg-gradient-to-b from-cyan-50 to-white dark:from-cyan-900/20 dark:to-navy-900/80 border-cyan-200 dark:border-cyan-500/30";
-    iconBoxClass = "bg-cyan-100 dark:bg-cyan-500/20 border-cyan-200 dark:border-cyan-500/30 text-cyan-600 dark:text-cyan-400";
-    textClass = "text-cyan-900 dark:text-cyan-100";
     highlightColor = "cyan";
+    bgClass = "bg-gradient-to-b from-cyan-50 to-white dark:from-cyan-900/20 dark:to-navy-900/80";
+    ringClass = "ring-cyan-200 dark:ring-cyan-500/30 group-hover:ring-cyan-300 dark:group-hover:ring-cyan-400/50";
+    shadowHoverClass = "hover:shadow-cyan-500/20";
+
+    iconBoxClass = "bg-cyan-100/80 backdrop-blur-md shadow-lg dark:bg-cyan-500/20 border-cyan-200 dark:border-cyan-500/30 text-cyan-600 dark:text-cyan-400";
+    textClass = "text-cyan-900 dark:text-cyan-100";
+
+    iconHoverClasses = "group-hover:bg-cyan-600 dark:group-hover:bg-cyan-500/20 group-hover:border-cyan-400 dark:group-hover:border-cyan-400/50 group-hover:shadow-cyan-500/40";
+
   } else {
     // LIGHT BLUE THEME (Hardware & Parsing)
-    bgClass = "bg-gradient-to-b from-blue-50 to-white dark:from-navy-900/80 dark:to-blue-950/20 border-blue-200 dark:border-blue-500/30";
-    iconBoxClass = "bg-blue-100 dark:bg-blue-500/20 border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-blue-400";
-    textClass = "text-blue-900 dark:text-blue-100";
     highlightColor = "blue";
+    bgClass = "bg-gradient-to-b from-blue-50 to-white dark:from-navy-900/80 dark:to-blue-950/20";
+    ringClass = "ring-blue-200 dark:ring-blue-500/30 group-hover:ring-blue-300 dark:group-hover:ring-blue-400/50";
+    shadowHoverClass = "hover:shadow-blue-500/20";
+
+    iconBoxClass = "bg-blue-100/80 backdrop-blur-md shadow-lg dark:bg-blue-500/20 border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-blue-400";
+    textClass = "text-blue-900 dark:text-blue-100";
+
+    iconHoverClasses = "group-hover:bg-blue-500 dark:group-hover:bg-blue-500/20 group-hover:border-blue-400 dark:group-hover:border-blue-400/50 group-hover:shadow-blue-500/40";
   }
+
+  // Determine if hovering based on opacity state
+  const isHovered = opacity > 0;
 
   return (
     <div 
@@ -206,63 +231,79 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, className = '' }) =>
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={`
-        relative overflow-hidden rounded-3xl border shadow-lg dark:shadow-2xl group 
+        relative rounded-3xl shadow-lg dark:shadow-2xl group 
         transition-all duration-500 ease-out cursor-default
-        hover:-translate-y-2 hover:shadow-2xl 
-        ${bgClass} ${className}
-        ${highlightColor === 'purple' ? 'hover:shadow-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400/50' : ''}
-        ${highlightColor === 'cyan' ? 'hover:shadow-cyan-500/20 hover:border-cyan-300 dark:hover:border-cyan-400/50' : ''}
-        ${highlightColor === 'blue' ? 'hover:shadow-blue-500/20 hover:border-blue-300 dark:hover:border-blue-400/50' : ''}
+        hover:shadow-2xl 
+        ${className}
+        ${shadowHoverClass}
       `}
       style={{
-        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale3d(1, 1, 1)`,
+        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale3d(1, 1, 1) translateY(${isHovered ? -8 : 0}px)`,
       }}
     >
-      {/* Internal Glow/Backlight */}
-      <div className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none
-          ${highlightColor === 'purple' ? 'from-purple-500/5 to-transparent' : ''}
-          ${highlightColor === 'cyan' ? 'from-cyan-500/5 to-transparent' : ''}
-          ${highlightColor === 'blue' ? 'from-blue-500/5 to-transparent' : ''}
-      `} />
+      {/* 
+        VISUAL LAYER (Background, Pattern, Gradient)
+        Separated from the border and content to ensure proper layering.
+      */}
+      <div className="absolute inset-0 rounded-3xl overflow-hidden">
+          
+          {/* Base Background Color */}
+          <div className={`absolute inset-0 ${bgClass} transition-colors duration-300`} />
 
-      {/* Spotlight Border Effect */}
-      <div 
-        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${
-              highlightColor === 'purple' ? 'rgba(168, 85, 247, 0.25)' : 
-              highlightColor === 'cyan' ? 'rgba(6, 182, 212, 0.25)' : 
-              'rgba(59, 130, 246, 0.25)'
-          }, transparent 40%)`,
-          maskImage: 'linear-gradient(black, black) content-box, linear-gradient(black, black)',
-          maskComposite: 'exclude',
-          WebkitMaskComposite: 'xor',
-          padding: '1.5px',
-        }}
-      />
+          {/* Internal Glow/Backlight */}
+          <div className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none
+              ${highlightColor === 'purple' ? 'from-purple-500/5 to-transparent' : ''}
+              ${highlightColor === 'cyan' ? 'from-cyan-500/5 to-transparent' : ''}
+              ${highlightColor === 'blue' ? 'from-blue-500/5 to-transparent' : ''}
+          `} />
 
-      {/* Specific Stylized Pattern */}
-      <CardPattern type={feature.id} />
+          {/* Specific Stylized Pattern */}
+          <CardPattern type={feature.id} />
 
-      {/* Readability Gradient (Darker at bottom) */}
-      {/* This ensures text pops even when hovering over busy patterns */}
-      <div className={`absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t opacity-100 pointer-events-none
-          from-white via-white/80 to-transparent 
-          dark:from-[#020408] dark:via-[#020408]/80 dark:to-transparent
-          ${highlightColor === 'purple' ? 'dark:from-navy-950' : ''}
-          ${highlightColor === 'cyan' ? 'dark:from-navy-950' : ''}
-      `} />
+          {/* 
+             RESTORED: Bottom Gradient for Readability 
+             This sits inside the overflow-hidden visual container.
+             We fade to the background color to ensure text readability at the bottom.
+          */}
+          <div className={`absolute bottom-0 left-0 right-0 h-2/5 pointer-events-none bg-gradient-to-t from-slate-50 via-slate-50/80 to-transparent dark:from-navy-950 dark:via-navy-950/80 dark:to-transparent opacity-90`} />
+      </div>
 
-      {/* Content */}
-      <div className="relative h-full p-8 flex flex-col z-10 pointer-events-none">
+      {/* 
+        BORDER LAYER 
+        This is an overlay that sits ON TOP of the Visual Layer (and its gradient).
+        This ensures the border is never obscured by internal gradients.
+      */}
+      <div className={`absolute inset-0 rounded-3xl ring-1 ring-inset ${ringClass} transition-colors duration-300 pointer-events-none z-20`} />
+
+      {/* 
+        SPOTLIGHT LAYER
+        Sits on top of border to provide the shine effect, but pointer-events-none ensures it doesn't block interaction.
+      */}
+      <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none z-20">
+         <div 
+            className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"
+            style={{
+              background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${
+                  highlightColor === 'purple' ? 'rgba(168, 85, 247, 0.25)' : 
+                  highlightColor === 'cyan' ? 'rgba(6, 182, 212, 0.25)' : 
+                  'rgba(59, 130, 246, 0.25)'
+              }, transparent 40%)`,
+              maskImage: 'linear-gradient(black, black) content-box, linear-gradient(black, black)',
+              maskComposite: 'exclude',
+              WebkitMaskComposite: 'xor',
+              padding: '1.5px',
+            }}
+          />
+      </div>
+
+      {/* CONTENT LAYER - Sits on top of everything */}
+      <div className="relative h-full p-8 flex flex-col z-30 pointer-events-none">
         <div className="mb-6">
           <div className={`
-            w-14 h-14 rounded-2xl flex items-center justify-center shadow-inner transition-all duration-500
+            w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300
             ${iconBoxClass}
-            group-hover:scale-110 group-hover:text-white group-hover:shadow-lg
-            ${highlightColor === 'purple' ? 'group-hover:bg-purple-500 group-hover:border-purple-400 group-hover:shadow-purple-500/40' : ''}
-            ${highlightColor === 'cyan' ? 'group-hover:bg-cyan-500 group-hover:border-cyan-400 group-hover:shadow-cyan-500/40' : ''}
-            ${highlightColor === 'blue' ? 'group-hover:bg-blue-500 group-hover:border-blue-400 group-hover:shadow-blue-500/40' : ''}
+            group-hover:scale-110 group-hover:text-white
+            ${iconHoverClasses}
           `}>
             <Icon className="w-7 h-7 transition-colors" />
           </div>

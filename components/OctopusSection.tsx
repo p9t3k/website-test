@@ -43,6 +43,26 @@ const FlagJP = () => (
       <circle cx="1.5" cy="1" r="0.6" fill="#BC002D"/>
     </svg>
 );
+const FlagIE = () => (
+    <svg viewBox="0 0 3 2" className="w-5 h-3.5 rounded-sm inline-block mr-2 shadow-sm">
+      <rect width="1" height="2" fill="#169b62"/>
+      <rect width="1" height="2" x="1" fill="#ffffff"/>
+      <rect width="1" height="2" x="2" fill="#ff883e"/>
+    </svg>
+);
+const FlagSG = () => (
+    <svg viewBox="0 0 3 2" className="w-5 h-3.5 rounded-sm inline-block mr-2 shadow-sm">
+       <rect width="3" height="2" fill="white"/>
+       <rect width="3" height="1" fill="#EE2536"/>
+       <circle cx="0.8" cy="0.4" r="0.35" fill="white" />
+       <circle cx="0.9" cy="0.4" r="0.3" fill="#EE2536" />
+       <circle cx="1.0" cy="0.4" r="0.05" fill="white" />
+       <circle cx="0.75" cy="0.25" r="0.05" fill="white" />
+       <circle cx="0.75" cy="0.55" r="0.05" fill="white" />
+       <circle cx="0.6" cy="0.4" r="0.05" fill="white" />
+       <circle cx="0.85" cy="0.25" r="0.05" fill="white" />
+    </svg>
+);
 
 // Background Pattern Component
 const OctopusPattern: React.FC<{ type: string }> = ({ type }) => {
@@ -317,6 +337,7 @@ const OctopusSection: React.FC = () => {
                             <span className="px-4 py-2 bg-white dark:bg-navy-900 border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-gray-200 hover:border-blue-400 dark:hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-white/5 transition-all cursor-default rounded-lg flex items-center font-medium shadow-lg"><FlagDE /> Frankfurt</span>
                             <span className="px-4 py-2 bg-white dark:bg-navy-900 border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-gray-200 hover:border-blue-400 dark:hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-white/5 transition-all cursor-default rounded-lg flex items-center font-medium shadow-lg"><FlagNL /> Amsterdam</span>
                             <span className="px-4 py-2 bg-white dark:bg-navy-900 border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-gray-200 hover:border-blue-400 dark:hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-white/5 transition-all cursor-default rounded-lg flex items-center font-medium shadow-lg"><FlagGB /> London</span>
+                            <span className="px-4 py-2 bg-white dark:bg-navy-900 border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-gray-200 hover:border-blue-400 dark:hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-white/5 transition-all cursor-default rounded-lg flex items-center font-medium shadow-lg"><FlagIE /> Dublin</span>
                         </div>
                     </div>
                     <div>
@@ -325,9 +346,8 @@ const OctopusSection: React.FC = () => {
                         </h4>
                         <div className="flex flex-wrap gap-3">
                             <span className="px-4 py-2 bg-white dark:bg-navy-900 border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-gray-200 hover:border-blue-400 dark:hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-white/5 transition-all cursor-default rounded-lg flex items-center font-medium shadow-lg"><FlagUS /> NYC</span>
-                            <span className="px-4 py-2 bg-white dark:bg-navy-900 border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-gray-200 hover:border-blue-400 dark:hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-white/5 transition-all cursor-default rounded-lg flex items-center font-medium shadow-lg"><FlagUS /> Miami</span>
-                            <span className="px-4 py-2 bg-white dark:bg-navy-900 border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-gray-200 hover:border-blue-400 dark:hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-white/5 transition-all cursor-default rounded-lg flex items-center font-medium shadow-lg"><FlagUS /> Chicago</span>
-                            <span className="px-4 py-2 bg-white dark:bg-navy-900 border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-gray-200 hover:border-blue-400 dark:hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-white/5 transition-all cursor-default rounded-lg flex items-center font-medium shadow-lg"><FlagUS /> LA</span>
+                            <span className="px-4 py-2 bg-white dark:bg-navy-900 border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-gray-200 hover:border-blue-400 dark:hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-white/5 transition-all cursor-default rounded-lg flex items-center font-medium shadow-lg"><FlagUS /> Salt Lake City</span>
+                            <span className="px-4 py-2 bg-white dark:bg-navy-900 border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-gray-200 hover:border-blue-400 dark:hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-white/5 transition-all cursor-default rounded-lg flex items-center font-medium shadow-lg"><FlagUS /> Ashburn</span>
                         </div>
                     </div>
                     <div>
@@ -336,13 +356,14 @@ const OctopusSection: React.FC = () => {
                         </h4>
                         <div className="flex flex-wrap gap-3">
                             <span className="px-4 py-2 bg-white dark:bg-navy-900 border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-gray-200 hover:border-blue-400 dark:hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-white/5 transition-all cursor-default rounded-lg flex items-center font-medium shadow-lg"><FlagJP /> Tokyo</span>
+                            <span className="px-4 py-2 bg-white dark:bg-navy-900 border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-gray-200 hover:border-blue-400 dark:hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-white/5 transition-all cursor-default rounded-lg flex items-center font-medium shadow-lg"><FlagSG /> Singapore</span>
                         </div>
                     </div>
                  </div>
              </div>
              <div className="mt-8 pt-8 border-t border-blue-200 dark:border-blue-500/20 flex items-center gap-3 text-xs text-blue-600 dark:text-blue-400/80 font-mono">
                 <Globe className="w-4 h-4" />
-                14 SUB-LOCATIONS OPERATIONAL
+                SendTx SUB-LOCATIONS OPERATIONAL
              </div>
           </OctopusCard>
         </div>

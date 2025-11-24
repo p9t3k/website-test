@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react';
+import Logo from './Logo';
 
 interface NavbarProps {
   onNavigate: (sectionId: string) => void;
@@ -96,11 +97,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isDark, toggleTheme }) => {
         >
           
           <div className="flex items-center gap-3 cursor-pointer group shrink-0" onClick={() => handleNavClick('hero')}>
-            <img 
-              src="https://media.discordapp.net/attachments/688452602031112278/1441165958168182875/p9_logo.png?ex=692176a3&is=69202523&hm=45f4bb2dfefac4f5a403a092c8b3028f44af5582535c9cb586f866f1ef708bc3&=&format=webp&quality=lossless&width=2000&height=2000" 
-              alt="P9 Nodes Logo" 
-              className={`${transitionClass} h-8 md:h-10 w-auto object-contain ${!isDark ? 'invert' : ''}`}
-            />
+            <Logo className={`${transitionClass} h-8 md:h-10 w-auto text-black dark:text-white`} />
             
             <div 
                 className={`
@@ -159,12 +156,18 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isDark, toggleTheme }) => {
                 className={`
                   relative group flex items-center justify-center overflow-hidden
                   
-                  /* Light Mode: Purple Text/Border/Logo -> Solid Blurple Hover */
+                  /* Light Mode: 
+                     Idle: Solid Purple Border & Text 
+                     Hover: Solid Purple Background & White Text
+                  */
                   bg-slate-100 hover:bg-[#5865F2]
                   text-[#5865F2] hover:text-white
-                  border border-[#5865F2]/30 hover:border-[#5865F2]
+                  border border-[#5865F2] hover:border-[#5865F2]
                   
-                  /* Dark Mode: Glassy Idle -> Glassy Hover (Reverted solid hover) */
+                  /* Dark Mode: 
+                     Idle: Glassy Background & Light Purple Text & Solid Border
+                     Hover: Stronger Glassy Background & White Text
+                  */
                   dark:bg-[#5865F2]/10 dark:hover:bg-[#5865F2]/20
                   dark:text-[#8CA3FF] dark:hover:text-white
                   dark:border-[#5865F2]
@@ -233,15 +236,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isDark, toggleTheme }) => {
 
             <button onClick={() => handleNavClick('pricing')} className="text-2xl text-black dark:text-gray-300 hover:text-blue-500 font-medium">Plans</button>
             <button onClick={() => handleNavClick('faq')} className="text-2xl text-black dark:text-gray-300 hover:text-blue-500 font-medium">FAQ</button>
-            
-            {/* Mobile Discord Button */}
-            <button 
-                onClick={handleDiscordClick}
-                className="flex items-center justify-center gap-2 bg-[#5865F2] text-white px-6 py-3 font-bold text-base rounded-full shadow-[0_0_20px_rgba(88,101,242,0.4)] mt-4 hover:bg-[#4752C4] transition-colors"
-            >
-                <DiscordLogo className="w-5 h-5" />
-                Join Discord
-            </button>
+             <button onClick={handleDiscordClick} className="text-2xl text-[#5865F2] hover:text-blue-500 font-medium">Discord</button>
         </div>
       )}
     </>

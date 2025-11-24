@@ -9,6 +9,9 @@ import GlobalNetwork from './components/GlobalNetwork';
 import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
 import CheckoutModal from './components/CheckoutModal';
+import SupportChat from './components/SupportChat';
+import Logo from './components/Logo';
+import FooterText from './components/FooterText';
 import { PageState, Plan } from './types';
 
 const App: React.FC = () => {
@@ -69,11 +72,13 @@ const App: React.FC = () => {
         <Pricing onSelectPlan={handleSelectPlan} />
         <FAQ />
       </main>
+      
+      <SupportChat />
 
-      <footer className="bg-white dark:bg-navy-950 border-t border-slate-200 dark:border-white/5 pt-16 pb-12 px-6 relative z-10 transition-colors duration-300 text-sm">
-        <div className="max-w-7xl mx-auto">
+      <footer className="bg-white dark:bg-navy-950 border-t border-slate-200 dark:border-white/5 pt-16 relative z-10 transition-colors duration-300 text-sm overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 pb-0">
             {/* Main Footer Container - Flex Layout with Categories */}
-            <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-8">
+            <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-8 relative z-20">
                 
                 {/* CATEGORY 1: Company Information (P9 + TideBlock) */}
                 <div className="flex flex-col md:flex-row gap-10 lg:gap-16">
@@ -81,11 +86,7 @@ const App: React.FC = () => {
                     {/* P9 Nodes Brand */}
                     <div className="flex flex-col gap-6 max-w-xs">
                         <div className="flex items-center gap-3">
-                            <img 
-                                src="https://media.discordapp.net/attachments/688452602031112278/1441165958168182875/p9_logo.png?ex=692176a3&is=69202523&hm=45f4bb2dfefac4f5a403a092c8b3028f44af5582535c9cb586f866f1ef708bc3&=&format=webp&quality=lossless&width=2000&height=2000" 
-                                alt="P9 Nodes Logo" 
-                                className={`h-10 w-auto object-contain ${!isDark ? 'invert' : ''}`}
-                            />
+                            <Logo className="h-10 w-auto text-black dark:text-white" />
                             <span className="font-bold tracking-tight text-slate-900 dark:text-white text-xl mt-1">P9 Nodes</span>
                         </div>
                         
@@ -158,6 +159,11 @@ const App: React.FC = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            {/* Large P9 Nodes Typography - SVG Version */}
+            <div className="w-full flex justify-center pointer-events-none select-none mt-24 pb-0">
+                <FooterText className="w-full h-auto max-h-[250px]" />
             </div>
         </div>
       </footer>

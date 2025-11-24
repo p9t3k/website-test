@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowRight, Zap } from 'lucide-react';
 
@@ -177,6 +176,8 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
             </div>
         </div>
       </div>
+
+     
     </section>
   );
 };
