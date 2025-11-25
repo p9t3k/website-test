@@ -134,7 +134,7 @@ const App: React.FC = () => {
     if (sectionId === 'plans' || sectionId === 'pricing') {
         if (pageState !== PageState.PLANS) {
             setPageState(PageState.PLANS);
-            window.history.pushState(null, '', '/pricing');
+            window.history.pushState(null, '', '/website-test/pricing');
         } else {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
