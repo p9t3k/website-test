@@ -219,7 +219,8 @@ const GlobalNetwork: React.FC = () => {
                         Global <span className="text-blue-600 dark:text-blue-500">Infrastructure</span>
                     </h2>
                     <p className="text-slate-600 dark:text-gray-400 text-base leading-relaxed font-light max-w-lg">
-                        Private infrastructure deployed strategically where stake is concentrated and latency is key. We don't rely on public clouds; we own the metal.
+                        Private infrastructure deployed strategically where stake is concentrated and latency is key, to ensure 
+                        <br/>ultra-low-latency connections to Solana validators.
                     </p>
                 </div>
 
@@ -253,7 +254,7 @@ const GlobalNetwork: React.FC = () => {
                                 <Zap className="w-4 h-4 text-cyan-400" />
                                 Decoded Shreds
                             </h3>
-                            <p className="text-[10px] text-cyan-600 dark:text-cyan-400 font-mono uppercase tracking-wider mt-1">Turbine Protocol</p>
+                            <p className="text-[10px] text-cyan-600 dark:text-cyan-400 font-mono uppercase tracking-wider mt-1">Custom Decoder</p>
                         </div>
 
                         <div className="space-y-2">

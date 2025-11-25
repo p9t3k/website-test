@@ -89,7 +89,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, plan }) 
                          <div>
                              <p className="text-base font-bold text-slate-900 dark:text-white mb-1">Check Status</p>
                              <p className="text-sm text-slate-600 dark:text-gray-400 leading-snug">
-                                The NFT metadata reveals if the node is active. <span className="text-blue-600 dark:text-blue-400 font-medium">Active nodes work instantly.</span>
+                                <span className="text-blue-600 dark:text-blue-400 font-medium">/checkrenewal </span> command on our Discord reveals if the node is active. <span className="text-blue-600 dark:text-blue-400 font-medium">Active nodes work instantly.</span>
                              </p>
                          </div>
                     </div>
@@ -101,7 +101,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, plan }) 
                          </div>
                          <div>
                              <p className="text-base font-bold text-slate-900 dark:text-white mb-1">Activate / Renew</p>
-                             <p className="text-sm text-slate-600 dark:text-gray-400 leading-snug">If expired, pay 400 USDC via our dApp to activate access for 30 days.</p>
+                             <p className="text-sm text-slate-600 dark:text-gray-400 leading-snug">If frozen, pay renewal via our systems to activate access until the next expiration date.</p>
                          </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, plan }) 
                         </div>
                         <div className="text-left">
                             <div className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-base">Tensor</div>
-                            <div className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-wider">Pro Trading</div>
+                            <div className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-wider">NFT Marketplace</div>
                         </div>
                     </div>
                     <ExternalLink className="w-5 h-5 text-slate-300 group-hover:text-blue-500 transition-colors shrink-0" />
@@ -166,7 +166,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, plan }) 
                 <div className="flex gap-3">
                      <ShoppingCart className="w-5 h-5 text-slate-400 dark:text-gray-500 shrink-0" />
                      <p className="text-xs text-slate-500 dark:text-gray-400 leading-relaxed">
-                        Verify the "Renewed Until" metadata trait before purchasing to confirm active status.
+                        Verify the NFT status on our discord before purchasing to confirm it is active.
                      </p>
                 </div>
             </div>

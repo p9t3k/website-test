@@ -115,10 +115,10 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         <div className="text-center mb-12">
-          <div className="inline-block px-4 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold mb-6 tracking-wider">Limited License Allocation</div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-slate-900 dark:text-white tracking-tight">Secure your <span className="text-blue-600 dark:text-blue-500">allocation</span></h2>
+          <div className="inline-block px-4 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold mb-6 tracking-wider">Limited Licenses</div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-slate-900 dark:text-white tracking-tight">Buy P9 Nodes <span className="text-blue-600 dark:text-blue-500">NFT</span></h2>
           <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto font-light text-base md:text-lg">
-            Access is decentralized. Acquire a P9 Node NFT on the secondary market to initialize your private RPC endpoint.
+            You are just one NFT away from your path to success. Buy one on the secondary market to access our endpoints.
           </p>
         </div>
 
@@ -188,11 +188,11 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
                                         <div className="p-1 rounded bg-blue-100 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400">
                                             <Server className="w-3.5 h-3.5" />
                                         </div>
-                                        <h4 className="font-bold text-slate-900 dark:text-white text-sm uppercase tracking-wide">Full RPC/gRPC</h4>
+                                        <h4 className="font-bold text-slate-900 dark:text-white text-sm uppercase tracking-wide">Full Endpoints</h4>
                                         <span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-600 text-blue-700 dark:text-white text-[10px] font-bold rounded-full">2x</span>
                                     </div>
                                     <p className="text-xs text-slate-500 dark:text-gray-400 font-medium pl-8">
-                                        Bidirectional. Full history & tx submission.
+                                        Full RPC, Geyser Nodes and Decoded Shreds, enhanced with Octopus Mode.
                                     </p>
                                 </div>
                             </div>
@@ -219,11 +219,11 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
                                         <div className="p-1 rounded bg-cyan-100 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400">
                                             <Zap className="w-3.5 h-3.5" />
                                         </div>
-                                        <h4 className="font-bold text-slate-900 dark:text-white text-sm uppercase tracking-wide">Decoded Shreds</h4>
+                                        <h4 className="font-bold text-slate-900 dark:text-white text-sm uppercase tracking-wide">Decoded Shreds Endpoints</h4>
                                         <span className="px-2 py-0.5 bg-cyan-100 dark:bg-cyan-600 text-cyan-700 dark:text-white text-[10px] font-bold rounded-full">4x</span>
                                     </div>
                                     <p className="text-xs text-slate-500 dark:text-gray-400 font-medium pl-8">
-                                        Inbound-only. Ultra-low latency Turbine stream.
+                                        Ultra-low latency data stream from multiple sources.
                                     </p>
                                 </div>
                             </div>
@@ -267,7 +267,7 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
                         <Cpu className="w-5 h-5 text-slate-700 dark:text-white" />
                     </div>
                     <h3 className="text-lg font-bold uppercase tracking-widest text-slate-900 dark:text-white">
-                        Acquisition
+                        Pricing
                     </h3>
                 </div>
 
@@ -334,12 +334,12 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
                          </div>
                          <div className="space-y-1 relative z-10">
                              <div className="flex justify-between items-center">
-                                 <span className="text-xs text-slate-500 dark:text-gray-400">Pubkeys monitored</span>
-                                 <span className="font-mono font-bold text-blue-700 dark:text-blue-300 text-sm">Max 600</span>
+                                 <span className="text-xs text-slate-500 dark:text-gray-400">Max Monitored Pubkeys</span>
+                                 <span className="font-mono font-bold text-blue-700 dark:text-blue-300 text-sm">600</span>
                              </div>
                              <div className="flex justify-between items-center">
-                                 <span className="text-xs text-slate-500 dark:text-gray-400">Simultaneous Connections</span>
-                                 <span className="font-mono font-bold text-blue-700 dark:text-blue-300 text-sm">Max 3</span>
+                                 <span className="text-xs text-slate-500 dark:text-gray-400">Max Simultaneous Connections</span>
+                                 <span className="font-mono font-bold text-blue-700 dark:text-blue-300 text-sm">3</span>
                              </div>
                          </div>
                     </div>
@@ -353,7 +353,7 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
                         className="w-full group relative flex items-center justify-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-navy-950 px-6 py-4 font-bold text-sm md:text-base transition-all rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:bg-blue-600 dark:hover:bg-blue-500 hover:text-white dark:hover:text-white overflow-hidden"
                     >
                         <span className="relative z-10 flex items-center gap-2">
-                             Acquire Access
+                             Buy now
                              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </span>
                     </button>

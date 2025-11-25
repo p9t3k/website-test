@@ -28,7 +28,7 @@ export const FEATURES: ServiceFeature[] = [
   {
     id: 'hardware',
     title: 'Premium quality hardware',
-    description: 'Hosted on bare metal infrastructure, our nodes capitalize on the lowest average ping to validators worldwide, thanks to our tailor made network.',
+    description: 'Hosted on bare metal infrastructure, P9 Nodes are always up to date with the newest available hardware, to ensure max speed and reliability.',
     icon: 'Server'
   },
   {
@@ -55,27 +55,35 @@ export const SYSTEM_INSTRUCTION = "You are NexusBot, an advanced AI assistant fo
 
 export const FAQS: FAQItem[] = [
   {
-    question: "How does the token-gated access work?",
-    answer: "Access to the P9 Nodes infrastructure is exclusively available to holders of our NFT License. You must purchase a P9 Node NFT from a secondary marketplace like Tensor or Magic Eden. Once you hold the NFT in your wallet, you can connect to our dashboard to view your private endpoints instantly. No setup required."
+    question: "How does the NFT-gated access work?",
+    answer: "Access to the P9 Nodes infrastructure is exclusively available to holders of our NFT License. You must purchase a P9 Node NFT from a secondary marketplace like Tensor or Magic Eden, or rent from our holders. Once you hold the NFT in your wallet, you can connect to our dashboard to view your private endpoints instantly."
   },
   {
     question: "What is the complete pricing structure?",
-    answer: "The cost is twofold: First, the one-time acquisition cost of the NFT License on the secondary market (price varies based on supply and demand). Second, a monthly renewal fee of 400 USDC is required to keep your node access active. This fee covers hardware maintenance and bandwidth costs."
+    answer: "Firstly, buy the NFT License on the secondary market (price varies based on the market). Once you own a license, a monthly renewal fee of 400 USDC is required to keep your node access active."
   },
   {
-    question: "What makes Octopus Mode faster than standard RPCs?",
-    answer: "Octopus Mode acts as a specialized blockchain CDN. Instead of sending transactions directly to the current leader (who might be overwhelmed), our architecture routes your traffic through our internal high-speed private network directly to the next scheduled leaders and key validators. This minimizes jitter and significantly increases the probability of landing in the next block."
+    question: "How many NFTs are circulation??",
+    answer: "Our supply is limited to 99 renewal licenses and 6 lifetime licenses. We will never mint more than 105 NFTs."
   },
   {
-    question: "Do you support Yellowstone gRPC and Geyser?",
-    answer: "Yes, all plans include full access to Yellowstone gRPC and Geyser plugins. You can subscribe to account updates, slot updates, and transaction streams with a limit of up to 600 pubkeys and 3 simultaneous connections, making it perfect for trading bots and indexers."
+    question: "Do you support Yellowstone gRPC (Geyser plugin)?",
+    answer: "Yes, all plans include full access to Yellowstone gRPC (Geyser plugin). You can stream data and monitor addresses with a limit of up to 600 pubkeys and 3 simultaneous connections, making it perfect for high-frequency trading."
   },
   {
-    question: "Why use private hardware over cloud providers?",
-    answer: "Cloud providers (AWS, GCP) often introduce virtualization latency and 'noisy neighbor' issues. We own and operate bare-metal servers in Frankfurt and NYC—strategically located next to major validator clusters. This physical proximity ensures the lowest possible ping times to the network backbone."
+    question: "Do you own the infra?",
+    answer: "Yes, we own most of the bare-metal servers we operate, with private colocation."
+  },
+    {
+    question: "Is P9 Nodes staked?",
+    answer: "Yes, we have exclusive and full access to a considerable amount of stake on the Solana blockchain. To ensure reliability, our stake-weighted connections are private, we don't share them with others."
+  },
+      {
+    question: "Do you support heavy calls (GetProgramAccount, etc.)?",
+    answer: "Yes, we operate indexes servers dedicated on handling all the heavy RPC Calls needed. Note: these heavy calls are highly monitored. Any abuse is going to be punished with a ban."
   },
   {
     question: "Can I resell my access?",
-    answer: "Yes. Since access is tied to the NFT, you can sell your P9 Node NFT on any marketplace at any time. The new owner will inherit the right to access the infrastructure, though they will need to maintain the monthly renewal fee."
+    answer: "Yes. Since access is tied to the NFT, you can sell your P9 Node NFT on any marketplace at any time."
   }
 ];

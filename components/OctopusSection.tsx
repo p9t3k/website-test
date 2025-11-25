@@ -1,6 +1,6 @@
 
 import React, { useRef, useState, MouseEvent } from 'react';
-import { Globe, Shield, Network, Zap, Check, X } from 'lucide-react';
+import { Globe, Shield, Network, Zap, Check, X, ArrowRight, BookOpen } from 'lucide-react';
 
 // Simple SVG Flags components
 const FlagDE = () => (
@@ -220,10 +220,21 @@ const OctopusSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-slate-900 dark:text-white tracking-tight">
             Octopus Mode
           </h2>
-          <p className="text-lg md:text-xl text-slate-600 dark:text-gray-400 font-light leading-relaxed">
-            An architectural framework designed to minimize transactions landing time on the Solana blockchain. 
-            Think of it like <span className="text-blue-600 dark:text-blue-500 font-medium">Cloudflare, built on Solana</span>.
+          <p className="text-lg md:text-xl text-slate-600 dark:text-gray-400 font-light leading-relaxed mb-8">
+            An architectural framework designed to minimize transactions landing time on the Solana blockchain.
+            <br/>Access a distributed spiderweb of nodes leveraging our <span className="text-blue-600 dark:text-blue-500 font-medium">Staked connections</span>.
           </p>
+
+          <a 
+            href="https://p9nodes.notion.site/octopus-mode" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-gray-200 text-sm font-semibold hover:border-blue-400 dark:hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 group shadow-sm hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]"
+          >
+             <BookOpen className="w-4 h-4" />
+             <span>Read Technical Deep Dive</span>
+             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </a>
         </div>
 
         {/* Main Grid */}

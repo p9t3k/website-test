@@ -1,3 +1,4 @@
+
 export interface Plan {
   id: string;
   name: string;
@@ -35,5 +36,6 @@ export interface FAQItem {
 export enum PageState {
   HOME = 'HOME',
   CHECKOUT = 'CHECKOUT',
-  SUCCESS = 'SUCCESS'
+  SUCCESS = 'SUCCESS',
+  PLANS = 'PLANS'
 }

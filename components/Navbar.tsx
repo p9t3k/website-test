@@ -135,7 +135,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isDark, toggleTheme }) => {
                 </div>
             </div>
             
-            <button onClick={() => onNavigate('pricing')} className="text-black dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Plans</button>
+            <button onClick={() => onNavigate('plans')} className="text-black dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Pricing</button>
             <button onClick={() => onNavigate('faq')} className="text-black dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">FAQ</button>
           </div>
 
@@ -234,7 +234,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isDark, toggleTheme }) => {
                 </div>
             </div>
 
-            <button onClick={() => handleNavClick('pricing')} className="text-2xl text-black dark:text-gray-300 hover:text-blue-500 font-medium">Plans</button>
+            <button onClick={() => handleNavClick('plans')} className="text-2xl text-black dark:text-gray-300 hover:text-blue-500 font-medium">Pricing</button>
             <button onClick={() => handleNavClick('faq')} className="text-2xl text-black dark:text-gray-300 hover:text-blue-500 font-medium">FAQ</button>
              <button onClick={handleDiscordClick} className="text-2xl text-[#5865F2] hover:text-blue-500 font-medium">Discord</button>
         </div>

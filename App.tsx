@@ -9,6 +9,7 @@ import GlobalNetwork from './components/GlobalNetwork';
 import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
 import CheckoutModal from './components/CheckoutModal';
+import PlansPage from './components/PlansPage';
 import Logo from './components/Logo';
 import FooterText from './components/FooterText';
 import { PageState, Plan } from './types';
@@ -31,8 +32,16 @@ const App: React.FC = () => {
   }, [isDark]);
 
   const handleNavigate = (sectionId: string) => {
+    // Navigate to PlansPage when 'plans' or 'pricing' is clicked
+    if (sectionId === 'plans' || sectionId === 'pricing') {
+        setPageState(PageState.PLANS);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+    }
+
     if (pageState !== PageState.HOME) {
       setPageState(PageState.HOME);
+      // Small timeout to allow Home to render before scrolling
       setTimeout(() => {
          const el = document.getElementById(sectionId);
          el?.scrollIntoView({ behavior: 'smooth' });
@@ -53,6 +62,24 @@ const App: React.FC = () => {
     setSelectedPlan(null);
   };
 
+  const renderContent = () => {
+      if (pageState === PageState.PLANS) {
+          return <PlansPage onBuyClick={handleSelectPlan} />;
+      }
+
+      return (
+        <main>
+            <Hero onCtaClick={() => handleNavigate('plans')} />
+            <Features />
+            <GlobalNetwork />
+            <OctopusSection />
+            <DecodedShreds />
+            <Pricing onSelectPlan={handleSelectPlan} />
+            <FAQ />
+        </main>
+      );
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-navy-950 font-sans text-slate-900 dark:text-white selection:bg-blue-400 selection:text-white transition-colors duration-300 overflow-x-hidden">
       
@@ -62,15 +89,7 @@ const App: React.FC = () => {
         toggleTheme={() => setIsDark(!isDark)} 
       />
       
-      <main>
-        <Hero onCtaClick={() => handleNavigate('pricing')} />
-        <Features />
-        <GlobalNetwork />
-        <OctopusSection />
-        <DecodedShreds />
-        <Pricing onSelectPlan={handleSelectPlan} />
-        <FAQ />
-      </main>
+      {renderContent()}
       
       <footer className="bg-white dark:bg-navy-950 border-t border-slate-200 dark:border-white/5 pt-16 relative z-10 transition-colors duration-300 text-sm overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 pb-0">
@@ -122,7 +141,7 @@ const App: React.FC = () => {
                         <ul className="space-y-3 text-slate-500 dark:text-gray-400">
                             <li><button onClick={() => handleNavigate('features')} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left">Features</button></li>
                             <li><button onClick={() => handleNavigate('octopus')} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left">Octopus Mode</button></li>
-                            <li><button onClick={() => handleNavigate('pricing')} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left">Plans & Pricing</button></li>
+                            <li><button onClick={() => handleNavigate('plans')} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left">Pricing</button></li>
                         </ul>
                     </div>
 
@@ -175,4 +194,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-    
