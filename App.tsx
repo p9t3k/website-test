@@ -14,6 +14,15 @@ import Logo from './components/Logo';
 import FooterText from './components/FooterText';
 import { PageState, Plan } from './types';
 
+// Detect base path for GitHub Pages or sub-directory deployment
+const getBasePath = () => {
+  const path = window.location.pathname;
+  if (path.startsWith('/website-test')) return '/website-test';
+  return '';
+};
+
+const BASE_PATH = getBasePath();
+
 const App: React.FC = () => {
   const [pageState, setPageState] = useState<PageState>(PageState.HOME);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
@@ -43,7 +52,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const handleLocationChange = () => {
       const path = window.location.pathname;
-      if (path === '/pricing') {
+      if (path.includes('/pricing')) {
         setPageState(PageState.PLANS);
       } else {
         setPageState(PageState.HOME);
@@ -134,7 +143,7 @@ const App: React.FC = () => {
     if (sectionId === 'plans' || sectionId === 'pricing') {
         if (pageState !== PageState.PLANS) {
             setPageState(PageState.PLANS);
-            window.history.pushState(null, '', '/website-test/pricing');
+            window.history.pushState(null, '', `${BASE_PATH}/pricing`);
         } else {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -142,18 +151,21 @@ const App: React.FC = () => {
     }
 
     // 2. Navigate to Home Page Sections
+    const homeUrl = BASE_PATH === '' ? '/' : `${BASE_PATH}/`;
+    
     if (pageState === PageState.HOME) {
         // Already on Home: Scroll smoothly
         scrollToSection(sectionId, 'smooth');
         
-        if (window.location.pathname !== '/') {
-            window.history.pushState(null, '', '/');
+        // Ensure URL is correct if it was previously /pricing
+        if (window.location.pathname.includes('/pricing')) {
+            window.history.pushState(null, '', homeUrl);
         }
     } else {
         // On another page: Switch first, then scroll (handled by useEffect)
         setPageState(PageState.HOME);
         setPendingScroll(sectionId);
-        window.history.pushState(null, '', '/');
+        window.history.pushState(null, '', homeUrl);
     }
   };
 
@@ -301,4 +313,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-    
