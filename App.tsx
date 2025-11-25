@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import OctopusSection from './components/OctopusSection';
@@ -18,6 +18,7 @@ const App: React.FC = () => {
   const [pageState, setPageState] = useState<PageState>(PageState.HOME);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
+  const [pendingScroll, setPendingScroll] = useState<string | null>(null);
   // Default to dark mode
   const [isDark, setIsDark] = useState(true);
 
@@ -31,24 +32,128 @@ const App: React.FC = () => {
     }
   }, [isDark]);
 
-  const handleNavigate = (sectionId: string) => {
-    // Navigate to PlansPage when 'plans' or 'pricing' is clicked
-    if (sectionId === 'plans' || sectionId === 'pricing') {
+  // Handle Manual Scroll Restoration to prevent browser interference
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  // Routing Logic
+  useEffect(() => {
+    const handleLocationChange = () => {
+      const path = window.location.pathname;
+      if (path === '/pricing') {
         setPageState(PageState.PLANS);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        setPageState(PageState.HOME);
+      }
+    };
+
+    // Check on initial mount
+    handleLocationChange();
+
+    // Listen for back/forward navigation
+    window.addEventListener('popstate', handleLocationChange);
+    return () => window.removeEventListener('popstate', handleLocationChange);
+  }, []);
+
+  // Helper to scroll to a section with offset
+  const scrollToSection = (id: string, behavior: ScrollBehavior = 'smooth') => {
+      if (id === 'hero') {
+           window.scrollTo({ top: 0, behavior });
+           return;
+      }
+      
+      const el = document.getElementById(id);
+      if (el) {
+           const navHeight = 80; // approximate navbar height
+           const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+           const offsetPosition = elementPosition - navHeight;
+
+           window.scrollTo({
+                top: offsetPosition,
+                behavior
+           });
+      }
+  };
+
+  // Immediate Scroll Reset when switching pages (Page Level)
+  useLayoutEffect(() => {
+    // If we are switching to PLANS, always top.
+    // If we are switching to HOME and have NO pending target (e.g. clicked Logo or Back Button), always top.
+    // If we have a pending target, we DO NOT scroll to top here, we let the useEffect handle the jump.
+    // NOTE: We intentionally exclude 'pendingScroll' from the dependency array to prevent
+    // this effect from running when 'pendingScroll' is reset to null after a successful scroll.
+    if (pageState === PageState.PLANS) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    } else if (pageState === PageState.HOME && !pendingScroll) {
+       window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [pageState]);
+
+  // Robust Pending Scroll Handler (Section Level)
+  useEffect(() => {
+    if (pageState === PageState.HOME && pendingScroll) {
+       // Wait a tick for React to render the Home components
+       const timer = setTimeout(() => {
+           const element = document.getElementById(pendingScroll);
+           if (element) {
+               // For cross-page navigation, use 'instant' (auto) to jump directly to content
+               // This avoids the visual glitch of scrolling from top/bottom
+               scrollToSection(pendingScroll, 'auto');
+               setPendingScroll(null);
+           } else {
+               // Fallback Polling if element takes longer (e.g. heavy render)
+               let attempts = 0;
+               const intervalId = setInterval(() => {
+                   const el = document.getElementById(pendingScroll);
+                   if (el) {
+                       scrollToSection(pendingScroll, 'auto');
+                       setPendingScroll(null);
+                       clearInterval(intervalId);
+                   } else {
+                       attempts++;
+                       if (attempts >= 20) { // Stop after ~1 second
+                           clearInterval(intervalId);
+                           setPendingScroll(null);
+                           // Last resort fallback to top if 'hero' was intended but not found (unlikely)
+                           if (pendingScroll === 'hero') window.scrollTo(0, 0);
+                       }
+                   }
+               }, 50);
+           }
+       }, 50); // Initial delay
+
+       return () => clearTimeout(timer);
+    }
+  }, [pageState, pendingScroll]);
+
+  const handleNavigate = (sectionId: string) => {
+    // 1. Navigate to PlansPage
+    if (sectionId === 'plans' || sectionId === 'pricing') {
+        if (pageState !== PageState.PLANS) {
+            setPageState(PageState.PLANS);
+            window.history.pushState(null, '', '/pricing');
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
         return;
     }
 
-    if (pageState !== PageState.HOME) {
-      setPageState(PageState.HOME);
-      // Small timeout to allow Home to render before scrolling
-      setTimeout(() => {
-         const el = document.getElementById(sectionId);
-         el?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+    // 2. Navigate to Home Page Sections
+    if (pageState === PageState.HOME) {
+        // Already on Home: Scroll smoothly
+        scrollToSection(sectionId, 'smooth');
+        
+        if (window.location.pathname !== '/') {
+            window.history.pushState(null, '', '/');
+        }
     } else {
-      const el = document.getElementById(sectionId);
-      el?.scrollIntoView({ behavior: 'smooth' });
+        // On another page: Switch first, then scroll (handled by useEffect)
+        setPageState(PageState.HOME);
+        setPendingScroll(sectionId);
+        window.history.pushState(null, '', '/');
     }
   };
 
@@ -74,6 +179,8 @@ const App: React.FC = () => {
             <GlobalNetwork />
             <OctopusSection />
             <DecodedShreds />
+            {/* Note: The main Pricing component on Home is distinct from the Plans page. 
+                We keep it here as part of the landing page content. */}
             <Pricing onSelectPlan={handleSelectPlan} />
             <FAQ />
         </main>
@@ -194,3 +301,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+    

@@ -59,6 +59,8 @@
               'beam': 'beam 2.5s linear infinite',
               'grid': 'grid 20s linear infinite',
               'shimmer': 'shimmer 2s linear infinite',
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'fade-in-up-delay': 'fadeInUp 0.8s ease-out 0.2s forwards',
             },
             keyframes: {
               float: {
@@ -76,6 +78,10 @@
               shimmer: {
                 '0%': { backgroundPosition: '200% 0' },
                 '100%': { backgroundPosition: '-200% 0' }
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
               }
             }
           }

@@ -108,7 +108,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
     <div 
         ref={containerRef}
         onMouseMove={handleMouseMove}
-        className="min-h-screen pt-36 md:pt-48 pb-20 bg-slate-50 dark:bg-navy-950 font-sans transition-colors duration-300 relative overflow-hidden"
+        className="min-h-screen pt-36 md:pt-60 pb-20 bg-slate-50 dark:bg-navy-950 font-sans transition-colors duration-300 relative overflow-hidden"
     >
       <HeroBackground />
 
@@ -125,11 +125,11 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
             
             {/* Main Text Content - Centered Top */}
             <div className="max-w-4xl mx-auto mb-10 relative z-10 text-center">
-                <h1 className="text-4xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 leading-tight">
+                <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 leading-tight opacity-0 animate-fade-in-up">
                     <span className="font-melodrame italic text-blue-600 dark:text-blue-500">Enterprise-grade</span> <br />
                     Infrastructure
                 </h1>
-                <p className="text-base md:text-xl text-slate-600 dark:text-gray-400 font-light leading-relaxed max-w-xl mx-auto">
+                <p className="text-base md:text-xl text-slate-600 dark:text-gray-400 font-light leading-relaxed max-w-xl mx-auto opacity-0 animate-fade-in-up-delay">
                     Predictable pricing for high-performance Solana nodes. <br className="hidden md:block" />
                     Own your access key as an asset, pay only for hosting.
                 </p>
@@ -435,7 +435,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
           
           <div className="max-w-2xl mx-auto relative z-10">
                 {/* Banner Image - Positioned to blend */}
-                <div className="rounded-t-3xl overflow-hidden relative z-0 mb-[-20px] opacity-90 mx-4 border border-b-0 border-cyan-400">
+                <div className="rounded-t-3xl overflow-hidden relative z-0 mb-[-20px] opacity-90 mx-4 border border-b-0 border-cyan-400/50">
                     <img 
                         src="https://media.discordapp.net/attachments/688452602031112278/1442838289039228938/banner_p9nodes.png?ex=6926e35e&is=692591de&hm=ca7306e6f90ef55f174e44da71e1677b2efa57f58eba1aa16ce8fb1feda6bfa4&=&format=webp&quality=lossless&width=3228&height=1816" 
                         alt="P9 Nodes Features Banner" 
@@ -446,7 +446,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
                 </div>
 
                 {/* Improved Liquid Glass Card - Divided List */}
-                <div className="backdrop-blur-3xl bg-white/40 dark:bg-[#050A14]/40 border border-cyan-400 rounded-3xl shadow-2xl overflow-hidden relative z-10">
+                <div className="backdrop-blur-3xl bg-white/40 dark:bg-[#050A14]/40 border border-cyan-400/50 rounded-3xl shadow-2xl overflow-hidden relative z-10">
                     
                     {/* Header */}
                     <div className="p-6 md:p-8 text-center border-b border-cyan-400/20 bg-white/40 dark:bg-white/5 backdrop-blur-md">
@@ -531,3 +531,4 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
 };
 
 export default PlansPage;
+    
