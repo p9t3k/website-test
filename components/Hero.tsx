@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { ArrowRight, Zap } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface HeroProps {
   onCtaClick: () => void;
@@ -7,177 +8,111 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
   return (
-    <section id="hero" className="relative pt-32 pb-12 md:pt-48 md:pb-32 overflow-hidden min-h-[90vh] lg:min-h-screen flex items-center bg-slate-50 dark:bg-navy-950 transition-colors duration-300">
-      {/* Cyber Grid Background - Adapted for modes in CSS */}
-      <div className="absolute inset-0 bg-cyber-grid-light dark:bg-cyber-grid animate-grid pointer-events-none opacity-50 dark:opacity-30"></div>
+    <section id="hero" className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden min-h-screen flex flex-col justify-center bg-slate-950 transition-colors duration-300">
       
-      {/* Ambient Glows - Masked to fade out at the bottom */}
-      <div className="absolute inset-0 pointer-events-none" style={{ maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)' }}>
-        <div className="absolute top-0 left-0 w-[300px] lg:w-[500px] h-[300px] lg:h-[500px] bg-blue-600/10 dark:bg-blue-600/20 blur-[120px] rounded-full"></div>
-        <div className="absolute bottom-0 right-0 w-[300px] lg:w-[600px] h-[300px] lg:h-[600px] bg-blue-500/10 dark:bg-blue-900/20 blur-[150px] rounded-full"></div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
+      {/* Background: Animated Circuit Pattern */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+         {/* Deep Base */}
+        <div className="absolute inset-0 bg-[#020408] z-0"></div>
         
-        {/* Left Content */}
-        <div className="space-y-6 md:space-y-8 text-center lg:text-left">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-xs font-bold tracking-wider text-blue-600 dark:text-blue-400 backdrop-blur-sm mx-auto lg:mx-0 opacity-0 animate-fade-in-up">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-            </span>
-            Operational
-          </div>
-          
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-sans leading-[1.1] tracking-tight text-slate-900 dark:text-white opacity-0 animate-fade-in-up">
-            The best solution on the Solana blockchain
-          </h1>
-          
-          <p className="text-base md:text-lg lg:text-xl text-slate-600 dark:text-gray-400 max-w-lg leading-relaxed font-light mx-auto lg:mx-0 opacity-0 animate-fade-in-up-delay">
-            RPC Nodes, gRPC streaming and the fastest shreds. Engineered with <strong className="text-blue-600 dark:text-blue-400 font-medium">Octopus Mode</strong> for increased bandwith and ultra-low latency.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start opacity-0 animate-fade-in-up-delay">
-            <button 
-              onClick={onCtaClick}
-              className="group flex items-center justify-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-navy-950 px-8 py-4 font-bold text-sm transition-all rounded-full shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:bg-blue-600 dark:hover:bg-blue-500 hover:text-white dark:hover:text-white"
-            >
-              Buy Now
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
-        </div>
+        {/* Animated Gradient Orbs */}
+        <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-blue-900/10 rounded-full blur-[100px] animate-pulse-slow"></div>
+        <div className="absolute bottom-[-20%] right-[-10%] w-[70%] h-[70%] bg-purple-900/10 rounded-full blur-[100px] animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
 
-        {/* Right Visual: Solana RPC Topology (Tech/Monochrome Version) */}
-        <div className="relative w-full max-w-[500px] aspect-square mx-auto flex items-center justify-center perspective-1000">
-            {/* Background Effects */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-transparent dark:to-white/5 blur-[60px] rounded-full"></div>
-            
-            {/* Main Network Container */}
-            <div className="relative w-full h-full">
-                <svg viewBox="0 0 500 500" className="w-full h-full overflow-visible">
-                    <defs>
-                        <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="rgba(59, 130, 246, 0)" />
-                            <stop offset="50%" stopColor="currentColor" stopOpacity="0.4" />
-                            <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
-                        </linearGradient>
-                        <filter id="glow">
-                            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
-                            <feMerge>
-                                <feMergeNode in="coloredBlur"/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                        </filter>
-                    </defs>
-
-                    {/* Concentric Rings (Orbitals) - Using currentColor to adapt to text color */}
-                    <g className="text-slate-300 dark:text-white/10">
-                        <circle cx="250" cy="250" r="100" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4,4" className="animate-[spin_20s_linear_infinite]" />
-                        <circle cx="250" cy="250" r="160" fill="none" stroke="currentColor" strokeWidth="1" className="animate-[spin_30s_linear_infinite_reverse] opacity-80" />
-                        <circle cx="250" cy="250" r="220" fill="none" stroke="currentColor" strokeWidth="0.5" className="animate-[spin_60s_linear_infinite] opacity-60" />
-                    </g>
+        {/* Pattern SVG */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.15]" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="circuit-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    {/* Circuit Lines */}
+                    <path d="M10 10 L40 10 L40 40" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-blue-500" />
+                    <path d="M60 60 L90 60 L90 90" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-blue-500" />
+                    <path d="M10 90 L10 60 L40 60" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-blue-500" />
+                    <path d="M90 10 L90 40 L60 40" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-blue-500" />
                     
-                    {/* Connecting Lines */}
-                    <g className="text-slate-400 dark:text-white" stroke="url(#techGradient)" strokeWidth="1.5">
-                        <path d="M250 250 L250 90" />
-                        <path d="M250 250 L390 170" />
-                        <path d="M250 250 L390 330" />
-                        <path d="M250 250 L250 410" />
-                        <path d="M250 250 L110 330" />
-                        <path d="M250 250 L110 170" />
-                    </g>
-
-                    {/* Outer Nodes */}
-                    <g className="animate-[spin_60s_linear_infinite] origin-center" style={{ transformOrigin: '250px 250px' }}>
-                        <circle cx="250" cy="90" r="4" className="fill-slate-900 dark:fill-[#020408] stroke-slate-400 dark:stroke-white" strokeWidth="2" />
-                        <circle cx="390" cy="170" r="4" className="fill-slate-900 dark:fill-[#020408] stroke-blue-500" strokeWidth="2" />
-                        <circle cx="390" cy="330" r="4" className="fill-slate-900 dark:fill-[#020408] stroke-slate-400 dark:stroke-white" strokeWidth="2" />
-                        <circle cx="250" cy="410" r="4" className="fill-slate-900 dark:fill-[#020408] stroke-blue-500" strokeWidth="2" />
-                        <circle cx="110" cy="330" r="4" className="fill-slate-900 dark:fill-[#020408] stroke-slate-400 dark:stroke-white" strokeWidth="2" />
-                        <circle cx="110" cy="170" r="4" className="fill-slate-900 dark:fill-[#020408] stroke-blue-500" strokeWidth="2" />
-                    </g>
-
-                    {/* Data Packets (Pulsing down the lines) - More active */}
-                    <circle r="2.5" className="fill-slate-900 dark:fill-white" filter="url(#glow)">
-                        <animateMotion dur="1s" repeatCount="indefinite" path="M250,250 L250,90" keyPoints="0;1" keyTimes="0;1" />
-                        <animate attributeName="opacity" values="1;0" dur="1s" repeatCount="indefinite" />
-                    </circle>
-                    <circle r="2" fill="#3B82F6" filter="url(#glow)">
-                        <animateMotion dur="1.5s" repeatCount="indefinite" path="M250,250 L390,170" />
-                        <animate attributeName="opacity" values="1;0" dur="1.5s" repeatCount="indefinite" />
-                    </circle>
-                    <circle r="2" className="fill-slate-900 dark:fill-white" filter="url(#glow)">
-                        <animateMotion dur="1.2s" repeatCount="indefinite" path="M250,250 L110,330" />
-                        <animate attributeName="opacity" values="1;0" dur="1.2s" repeatCount="indefinite" />
-                    </circle>
-                    {/* Additional Reverse Packets for high traffic feel */}
-                    <circle r="2" fill="#00F0FF" filter="url(#glow)">
-                         <animateMotion dur="2s" repeatCount="indefinite" path="M390,330 L250,250" />
-                         <animate attributeName="opacity" values="0;1" dur="2s" repeatCount="indefinite" />
-                    </circle>
-                     <circle r="2" className="fill-slate-900 dark:fill-white" filter="url(#glow)">
-                         <animateMotion dur="0.8s" repeatCount="indefinite" path="M250,250 L250,410" />
-                         <animate attributeName="opacity" values="1;0" dur="0.8s" repeatCount="indefinite" />
-                    </circle>
-                </svg>
+                    {/* Connection Dots */}
+                    <circle cx="10" cy="10" r="1.5" fill="currentColor" className="text-blue-400" />
+                    <circle cx="40" cy="40" r="1.5" fill="currentColor" className="text-blue-400" />
+                    <circle cx="60" cy="60" r="1.5" fill="currentColor" className="text-blue-400" />
+                    <circle cx="90" cy="90" r="1.5" fill="currentColor" className="text-blue-400" />
+                </pattern>
                 
-                {/* Central Content Overlay (Network Globe) */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="relative w-28 h-28 flex items-center justify-center bg-white/80 dark:bg-navy-950/90 backdrop-blur-xl rounded-full border border-slate-200 dark:border-blue-500/30 shadow-[0_0_50px_rgba(59,130,246,0.15)] dark:shadow-[0_0_50px_rgba(59,130,246,0.3)] z-10 overflow-hidden">
-                         {/* Pulsing Core */}
-                         <div className="absolute inset-0 bg-blue-500/10 dark:bg-blue-500/20 animate-pulse-slow rounded-full"></div>
-                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.2),transparent)] dark:bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.4),transparent)] z-0"></div>
-                         
-                         <svg viewBox="0 0 100 100" className="w-full h-full animate-[spin_12s_linear_infinite] opacity-80 z-10">
-                            <g className="stroke-slate-400 dark:stroke-white/50" strokeWidth="0.5" fill="none">
-                                {/* Longitude lines */}
-                                <ellipse cx="50" cy="50" rx="15" ry="48" />
-                                <ellipse cx="50" cy="50" rx="30" ry="48" />
-                                <ellipse cx="50" cy="50" rx="45" ry="48" />
-                                <line x1="50" y1="2" x2="50" y2="98" />
-                                {/* Latitude lines */}
-                                <path d="M6,50 L94,50" />
-                                <path d="M10,30 Q50,35 90,30" />
-                                <path d="M10,70 Q50,65 90,70" />
-                            </g>
-                            {/* Nodes on the globe */}
-                            <circle cx="65" cy="30" r="1.5" fill="#3B82F6" />
-                            <circle cx="35" cy="70" r="1.5" className="fill-slate-900 dark:fill-white" />
-                            <circle cx="50" cy="50" r="2" fill="#3B82F6" className="animate-pulse" />
-                         </svg>
-                    </div>
-                </div>
-            </div>
+                {/* Gradient for Pulse */}
+                <linearGradient id="pulse-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="rgba(59, 130, 246, 0)" />
+                    <stop offset="50%" stopColor="rgba(59, 130, 246, 1)" />
+                    <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
+                </linearGradient>
+            </defs>
             
-            {/* Floating Stats Cards */}
-            {/* Slot Landing - Updated with Green details */}
-            <div className="absolute top-20 right-0 md:-right-8 bg-white/80 dark:bg-navy-900/80 backdrop-blur border border-slate-200 dark:border-green-500/20 px-5 py-3 rounded-xl shadow-lg dark:shadow-[0_0_30px_rgba(34,197,94,0.1)] animate-float-delayed z-20">
-                <div className="flex items-center gap-3">
-                    <div className="relative">
-                        <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_#22c55e] animate-pulse"></div>
-                        <div className="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-20"></div>
-                    </div>
-                    <div>
-                         <span className="block text-[10px] text-slate-500 dark:text-gray-400 uppercase tracking-wider font-bold">Slot Landing</span>
-                         <span className="text-sm font-mono font-bold text-green-600 dark:text-green-400">0 block</span>
-                    </div>
+            {/* Static Grid */}
+            <rect width="100%" height="100%" fill="url(#circuit-pattern)" />
+            
+            {/* Animated Data Lines - Horizontal */}
+            <rect x="-100%" y="10" width="100%" height="1" fill="url(#pulse-grad)" className="animate-beam" style={{ animationDuration: '3s' }} />
+            <rect x="-100%" y="60" width="100%" height="1" fill="url(#pulse-grad)" className="animate-beam" style={{ animationDuration: '5s', animationDelay: '1s' }} />
+            <rect x="-100%" y="40" width="100%" height="1" fill="url(#pulse-grad)" className="animate-beam" style={{ animationDuration: '4s', animationDelay: '2s' }} />
+             <rect x="-100%" y="90" width="100%" height="1" fill="url(#pulse-grad)" className="animate-beam" style={{ animationDuration: '6s', animationDelay: '0.5s' }} />
+        </svg>
+
+         {/* Vertical Animated Lines */}
+         <div className="absolute inset-0">
+             <div className="absolute left-[20%] top-[-100%] w-[1px] h-full bg-gradient-to-b from-transparent via-blue-500 to-transparent animate-float" style={{ animationDuration: '4s' }}></div>
+             <div className="absolute left-[60%] top-[-100%] w-[1px] h-full bg-gradient-to-b from-transparent via-blue-500/50 to-transparent animate-float" style={{ animationDuration: '7s', animationDelay: '1s' }}></div>
+             <div className="absolute left-[85%] top-[-100%] w-[1px] h-full bg-gradient-to-b from-transparent via-blue-500/30 to-transparent animate-float" style={{ animationDuration: '5s', animationDelay: '2s' }}></div>
+         </div>
+      </div>
+      
+      {/* Bottom Fade to blend with Features Section */}
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-slate-50 dark:from-navy-950 to-transparent z-10 transition-colors duration-300"></div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-20 w-full">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            {/* LEFT: Text & CTA */}
+            <div className="text-left flex flex-col items-start opacity-0 animate-fade-in-up order-2 lg:order-1">
+                
+                {/* Operational Badge - MOVED TO TOP */}
+                <div className="mb-6 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-xs font-bold tracking-wider text-blue-400 backdrop-blur-sm">
+                    <span className="relative flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+                    </span>
+                    OPERATIONAL
+                </div>
+
+                <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold font-sans leading-[1.1] tracking-tight text-white mb-6">
+                    The <span className="font-melodrame text-blue-500 italic pr-2">Best</span> solution on the Solana blockchain
+                </h1>
+
+                <p className="text-lg md:text-xl lg:text-2xl text-slate-400 leading-relaxed font-light mb-10 max-w-xl">
+                    RPC Nodes, gRPC streaming and the fastest shreds. Engineered with <strong className="text-blue-400 font-medium">Octopus Mode</strong> for increased bandwidth and ultra-low latency.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full">
+                    <button 
+                        onClick={onCtaClick}
+                        className="group relative flex items-center justify-center gap-3 bg-white text-navy-950 px-10 py-4 font-bold text-lg transition-all rounded-full shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(59,130,246,0.6)] hover:bg-blue-500 hover:text-white"
+                    >
+                        Buy Now
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </button>
                 </div>
             </div>
 
-            <div className="absolute bottom-24 left-0 md:-left-8 bg-white/80 dark:bg-navy-900/80 backdrop-blur border border-slate-200 dark:border-blue-500/30 px-5 py-3 rounded-xl shadow-xl animate-float z-20">
-                <div className="flex items-center gap-3">
-                    <Zap className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-                    <div>
-                        <span className="block text-[10px] text-slate-500 dark:text-gray-400 uppercase tracking-wider font-bold">Latency</span>
-                        <span className="text-sm font-mono font-bold text-blue-600 dark:text-blue-400">&lt;1ms</span>
-                    </div>
-                </div>
+            {/* RIGHT: Image (Bigger & Floating) */}
+            <div className="relative order-1 lg:order-2 flex justify-center items-center h-[300px] md:h-[500px] lg:h-[600px] opacity-0 animate-fade-in-up-delay">
+                 {/* Glow behind image */}
+                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-600/20 blur-[100px] rounded-full"></div>
+                 
+                 <img 
+                    src="https://media.discordapp.net/attachments/688452602031112278/1442849009310896189/first_modal.png?ex=6926ed5a&is=69259bda&hm=5e27594322e005cf132f2b9ba4a0831b6bbed9959cf4a12a769ebe7d49651869&=&format=webp&quality=lossless&width=1816&height=1816"
+                    alt="P9 Nodes Infrastructure"
+                    className="relative z-10 w-full h-full object-contain drop-shadow-2xl animate-float lg:scale-125 origin-center"
+                />
             </div>
+
         </div>
       </div>
-
-     
     </section>
   );
 };

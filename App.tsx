@@ -89,17 +89,14 @@ const App: React.FC = () => {
 
   // Immediate Scroll Reset when switching pages (Page Level)
   useLayoutEffect(() => {
-    // If we are switching to PLANS, always top.
-    // If we are switching to HOME and have NO pending target (e.g. clicked Logo or Back Button), always top.
-    // If we have a pending target, we DO NOT scroll to top here, we let the useEffect handle the jump.
-    // NOTE: We intentionally exclude 'pendingScroll' from the dependency array to prevent
-    // this effect from running when 'pendingScroll' is reset to null after a successful scroll.
+    // We only force scroll to top here if we are going to Plans page
+    // OR if we are going to Home page without a pending target.
     if (pageState === PageState.PLANS) {
       window.scrollTo({ top: 0, behavior: 'instant' });
     } else if (pageState === PageState.HOME && !pendingScroll) {
        window.scrollTo({ top: 0, behavior: 'instant' });
     }
-  }, [pageState]);
+  }, [pageState]); // intentionally exclude pendingScroll to avoid race conditions
 
   // Robust Pending Scroll Handler (Section Level)
   useEffect(() => {
@@ -109,7 +106,6 @@ const App: React.FC = () => {
            const element = document.getElementById(pendingScroll);
            if (element) {
                // For cross-page navigation, use 'instant' (auto) to jump directly to content
-               // This avoids the visual glitch of scrolling from top/bottom
                scrollToSection(pendingScroll, 'auto');
                setPendingScroll(null);
            } else {
@@ -123,10 +119,10 @@ const App: React.FC = () => {
                        clearInterval(intervalId);
                    } else {
                        attempts++;
-                       if (attempts >= 20) { // Stop after ~1 second
+                       if (attempts >= 40) { // Stop after ~2 seconds (increased duration)
                            clearInterval(intervalId);
                            setPendingScroll(null);
-                           // Last resort fallback to top if 'hero' was intended but not found (unlikely)
+                           // Last resort fallback to top if 'hero' was intended but not found
                            if (pendingScroll === 'hero') window.scrollTo(0, 0);
                        }
                    }

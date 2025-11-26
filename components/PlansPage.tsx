@@ -1,7 +1,6 @@
 
-import React, { useState, useRef } from 'react';
-import { Check, Zap, Server, Shield, Activity, Database, Cpu, ArrowRight, Terminal, HelpCircle, ShoppingCart, Key, RefreshCw, ExternalLink } from 'lucide-react';
-import { PLANS } from '../constants';
+import React, { useState, useEffect, useRef } from 'react';
+import { Key, Check, RefreshCw, ExternalLink, Info, ArrowRight, Activity, Cpu, Server, Zap, Database, Terminal, HelpCircle, ShoppingCart, Shield } from 'lucide-react';
 
 interface PlansPageProps {
   onBuyClick: (plan: any) => void;
@@ -9,14 +8,14 @@ interface PlansPageProps {
 
 // --- Icons & Logos ---
 
-const TensorLogo = () => (
-  <svg viewBox="0 0 400 400" className="w-5 h-5 fill-current">
+const TensorLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 400 400" className={className || "w-5 h-5"} fill="currentColor">
     <path d="M200,60 L340,60 L320,120 L230,120 L230,340 L170,340 L170,120 L80,120 L60,60 Z" />
   </svg>
 );
 
-const MagicEdenLogo = () => (
-  <svg viewBox="0 0 174 105" className="w-5 h-5 fill-current">
+const MagicEdenLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 174 105" className={className || "w-5 h-5"} fill="currentColor">
      <path d="M122.81,26.5l10.15,11.93c1.17,1.34,2.19,2.44,2.62,3.07,3.04,3.02,4.74,7.09,4.74,11.34-.28,5.02-3.56,8.43-6.57,12.09l-7.1,8.34-3.71,4.32c-.13.15-.22.33-.25.53s0,.4.09.58c.08.18.22.33.4.44.18.11.38.15.58.14h37.04c5.65,0,12.78,4.76,12.37,11.97,0,3.27-1.34,6.42-3.69,8.74-2.36,2.32-5.55,3.63-8.87,3.64h-58c-3.82,0-14.08.41-16.95-8.34-.61-1.83-.69-3.79-.24-5.67.84-2.77,2.16-5.37,3.9-7.69,2.92-4.32,6.08-8.65,9.19-12.84,4.02-5.49,8.14-10.8,12.19-16.4.14-.18.22-.41.22-.64s-.08-.46-.22-.64l-14.74-17.29c-.09-.13-.22-.22-.37-.29-.14-.07-.29-.11-.46-.11s-.32.04-.46.11-.27.18-.37.29c-3.95,5.25-21.23,28.51-24.91,33.22s-12.76,4.97-17.79,0l-23.05-22.81c-.14-.14-.33-.25-.54-.28-.2-.04-.41-.02-.61.06-.19.08-.35.21-.47.39s-.18.38-.18.58v43.84c.06,3.11-.88,6.16-2.67,8.73-1.79,2.56-4.36,4.51-7.33,5.56-1.9.65-3.92.85-5.91.57-1.99-.28-3.89-1.02-5.52-2.17-1.64-1.14-2.98-2.66-3.9-4.42-.92-1.76-1.41-3.71-1.41-5.69V12.87c.13-2.84,1.17-5.57,2.97-7.8C4.76,2.84,7.22,1.23,10,.47c2.38-.62,4.89-.62,7.27.02,2.38.64,4.55,1.88,6.28,3.62l35.43,34.96c.11.11.24.19.38.24s.29.07.45.06c.15-.01.29-.06.42-.13s.25-.18.33-.29L85.73,4.59c1.17-1.39,2.63-2.52,4.28-3.3,1.65-.78,3.45-1.19,5.22-1.21h65.48c1.79,0,3.56.39,5.19,1.12,1.63.73,3.09,1.8,4.26,3.13,1.18,1.33,2.06,2.9,2.58,4.58.52,1.7.66,3.47.42,5.22-.46,3.04-2.03,5.81-4.41,7.79-2.38,1.99-5.4,3.06-8.52,3.02h-36.67c-.19,0-.37.06-.52.15-.15.09-.28.24-.37.39-.08.16-.13.34-.12.52,0,.18.07.35.18.51h-.01Z"/>
   </svg>
 );
@@ -88,11 +87,19 @@ const HeroBackground = () => (
             <rect width="100%" height="100%" fill="url(#circuit-bg)" />
         </svg>
     </div>
-);
+  );
 
 const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [highlightStep, setHighlightStep] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHighlightStep((prev) => (prev === 0 ? 1 : 0));
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (containerRef.current) {
@@ -108,7 +115,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
     <div 
         ref={containerRef}
         onMouseMove={handleMouseMove}
-        className="min-h-screen pt-36 md:pt-60 pb-20 bg-slate-50 dark:bg-navy-950 font-sans transition-colors duration-300 relative overflow-hidden"
+        className="min-h-screen bg-slate-50 dark:bg-navy-950 font-sans transition-colors duration-300 relative overflow-hidden"
     >
       <HeroBackground />
 
@@ -120,144 +127,166 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
         }}
       ></div>
       
-      {/* 1. HERO SECTION */}
-      <section className="max-w-7xl mx-auto px-6 mb-24 relative z-10 flex flex-col items-center">
+      {/* 1. HERO SECTION - Full Screen Min-Height to push other content down */}
+      <section className="min-h-screen flex flex-col justify-center max-w-7xl mx-auto px-6 pt-32 pb-20 relative z-10">
             
-            {/* Main Text Content - Centered Top */}
-            <div className="max-w-4xl mx-auto mb-10 relative z-10 text-center">
-                <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 leading-tight opacity-0 animate-fade-in-up">
+            {/* Main Text Content */}
+            <div className="max-w-4xl mx-auto mb-16 relative z-10 text-center">
+                <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 leading-tight opacity-0 animate-fade-in-up">
                     <span className="font-melodrame italic text-blue-600 dark:text-blue-500">Enterprise-grade</span> <br />
                     Infrastructure
                 </h1>
-                <p className="text-base md:text-xl text-slate-600 dark:text-gray-400 font-light leading-relaxed max-w-xl mx-auto opacity-0 animate-fade-in-up-delay">
+                <p className="text-base md:text-lg text-slate-600 dark:text-gray-400 font-light leading-relaxed max-w-xl mx-auto opacity-0 animate-fade-in-up-delay">
                     Predictable pricing for high-performance Solana nodes. <br className="hidden md:block" />
                     Own your access key as an asset, pay only for hosting.
                 </p>
             </div>
 
-            {/* Content Row: Pricing Card (Left) - Image (Right) */}
-            <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16">
+            {/* UNIFIED PREMIUM CARD DESIGN */}
+            <div className="w-full max-w-5xl mx-auto opacity-0 animate-fade-in-up-delay relative mt-12">
                 
-                {/* Left: Pricing Card */}
-                <div className="bg-white dark:bg-[#050A14] border border-slate-200 dark:border-white/10 rounded-3xl p-8 shadow-2xl dark:shadow-[0_0_50px_rgba(0,0,0,0.5)] max-w-lg w-full relative z-20">
-                    <div className="flex justify-between items-center mb-8 pb-8 border-b border-slate-100 dark:border-white/5">
-                        {/* Entry Cost */}
-                        <div className="text-left flex-1">
-                            <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Entry Cost</span>
-                            <div className="inline-block px-3 py-2 rounded-lg bg-blue-500/5 dark:bg-white/5 border border-blue-500/10 dark:border-white/10 text-blue-600 dark:text-white font-bold text-sm">
-                                NFT Market Price
-                            </div>
-                        </div>
-
-                        {/* Divider */}
-                        <div className="w-px h-12 bg-slate-100 dark:bg-white/5 mx-6"></div>
-
-                        {/* Renewal */}
-                        <div className="text-right flex-1">
-                                <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Monthly Renewal</span>
-                                <div className="text-3xl font-bold text-blue-600 dark:text-blue-500">400 <span className="text-sm text-slate-500">USDC</span></div>
-                        </div>
-                    </div>
-                    
-                    <p className="text-xs text-slate-500 mb-6 text-center">
-                        Secure your license on a secondary market to get started.
-                    </p>
-
-                    <div className="space-y-4">
-                        {/* Tensor Button - Ghost Style */}
-                        <button 
-                            onClick={handleTensorClick}
-                            className="group w-full flex items-center justify-between p-4 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#0A0E17] hover:border-blue-500 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-all duration-300"
-                        >
-                            <div className="flex items-center gap-4">
-                                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-[#1a1d1f] text-white group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors shadow-inner shrink-0">
-                                    <TensorLogo />
-                                </div>
-                                <div className="text-left">
-                                    <div className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-base">Buy on Tensor</div>
-                                </div>
-                            </div>
-                            <ExternalLink className="w-5 h-5 text-slate-300 group-hover:text-blue-500 transition-colors shrink-0" />
-                        </button>
-
-                        {/* Magic Eden Button - Ghost Style */}
-                        <button 
-                            onClick={handleMagicEdenClick}
-                            className="group w-full flex items-center justify-between p-4 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#0A0E17] hover:border-pink-500 dark:hover:border-pink-500 hover:bg-pink-50 dark:hover:bg-pink-500/10 transition-all duration-300"
-                        >
-                            <div className="flex items-center gap-4">
-                                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-[#1a1d1f] text-white group-hover:text-pink-500 transition-colors shadow-inner shrink-0">
-                                        <MagicEdenLogo />
-                                </div>
-                                <div className="text-left">
-                                    <div className="font-bold text-slate-900 dark:text-white group-hover:text-pink-500 transition-colors text-base">Buy on Magic Eden</div>
-                                </div>
-                            </div>
-                            <ExternalLink className="w-5 h-5 text-slate-300 group-hover:text-pink-500 transition-colors shrink-0" />
-                        </button>
+                {/* Floating Label - Moved outside for overflow-hidden fix */}
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
+                    <div className="px-4 py-1 bg-blue-600 text-white text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-full shadow-lg border border-blue-400 whitespace-nowrap flex items-center gap-2">
+                        <Key className="w-3 h-3" />
+                        <span>Access P9 Nodes NFT</span>
                     </div>
                 </div>
 
-                {/* Right: Visual Image */}
-                <div className="relative w-full max-w-md pointer-events-none flex justify-center lg:justify-start">
-                     <div className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full"></div>
-                     <img 
-                        src="https://media.discordapp.net/attachments/688452602031112278/1442849009310896189/first_modal.png?ex=6926ed5a&is=69259bda&hm=5e27594322e005cf132f2b9ba4a0831b6bbed9959cf4a12a769ebe7d49651869&=&format=webp&quality=lossless&width=1816&height=1816"
-                        alt="P9 Nodes Infrastructure Block"
-                        className="relative z-10 w-full h-auto drop-shadow-2xl animate-float"
-                    />
-                </div>
+                {/* Card Container */}
+                <div className="
+                    rounded-[24px] md:rounded-[32px] overflow-hidden
+                    bg-white/60 dark:bg-[#050A14]/60
+                    backdrop-blur-2xl backdrop-saturate-150
+                    border border-slate-200 dark:border-white/10
+                    shadow-2xl relative group
+                ">
+                    <div className="flex flex-col lg:flex-row items-stretch">
+                        
+                        {/* LEFT SIDE: ANIMATED PRICING & BUTTONS (WIDER 7/12) */}
+                        <div className="lg:w-7/12 p-6 md:p-8 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-slate-200/60 dark:border-white/10">
+                             
+                             <div className="mb-6 text-center lg:text-left">
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                                    Acquire License
+                                </h3>
+                             </div>
 
+                             {/* ANIMATED PRICING BOX */}
+                             <div className="bg-slate-50 dark:bg-black/20 rounded-2xl p-5 border border-slate-200 dark:border-white/10 mb-6 relative overflow-hidden">
+                                  {/* Step 1: Market Price */}
+                                  <div className={`flex justify-between items-end mb-4 pb-4 border-b border-slate-200 dark:border-white/10 relative transition-all duration-500 ${highlightStep === 0 ? 'opacity-100 translate-x-0' : 'opacity-50'}`}>
+                                      <div>
+                                          <span className={`flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider mb-1 transition-colors duration-500 ${highlightStep === 0 ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500 dark:text-gray-400'}`}>
+                                              <span className={`w-4 h-4 rounded-full flex items-center justify-center text-[8px] transition-colors duration-500 ${highlightStep === 0 ? 'bg-blue-600 text-white' : 'bg-slate-200 dark:bg-white/10'}`}>1</span>
+                                              Entry Cost
+                                          </span>
+                                          <div className={`text-xl font-bold transition-colors duration-500 ${highlightStep === 0 ? 'text-blue-600 dark:text-blue-400 scale-105 origin-left' : 'text-slate-900 dark:text-white'}`}>Market Price</div>
+                                      </div>
+                                      <span className="px-2 py-1 bg-slate-200 dark:bg-white/10 rounded text-[10px] font-mono font-bold text-slate-600 dark:text-gray-400">NFT</span>
+                                  </div>
+                                  
+                                  {/* Step 2: Monthly Renewal */}
+                                  <div className={`flex justify-between items-end transition-all duration-500 ${highlightStep === 1 ? 'opacity-100 translate-x-0' : 'opacity-50'}`}>
+                                      <div>
+                                          <span className={`flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider mb-1 transition-colors duration-500 ${highlightStep === 1 ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500 dark:text-gray-400'}`}>
+                                              <span className={`w-4 h-4 rounded-full flex items-center justify-center text-[8px] transition-colors duration-500 ${highlightStep === 1 ? 'bg-blue-600 text-white' : 'bg-slate-200 dark:bg-white/10'}`}>2</span>
+                                              Monthly Renewal
+                                          </span>
+                                          <div className={`text-3xl font-bold transition-colors duration-500 ${highlightStep === 1 ? 'text-blue-600 dark:text-blue-400 scale-105 origin-left' : 'text-slate-500 dark:text-gray-400'}`}>400 <span className="text-sm">USDC</span></div>
+                                      </div>
+                                      <span className={`px-2 py-1 rounded text-[10px] font-mono font-bold border transition-colors duration-500 ${highlightStep === 1 ? 'bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-500/30' : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-gray-500 border-transparent'}`}>RENEWAL</span>
+                                  </div>
+                             </div>
+
+                             {/* BUTTONS - Row Layout */}
+                             <div className="flex flex-col sm:flex-row gap-3">
+                                <button 
+                                    onClick={handleTensorClick}
+                                    className="flex-1 group/btn relative flex items-center justify-between px-4 py-3 rounded-xl bg-white dark:bg-[#0A0E17] border border-[#5865F2] hover:bg-[#5865F2]/10 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-[#5865F2]/20 hover:-translate-y-0.5"
+                                >
+                                    <div className="flex items-center gap-3">
+                                         <div className="p-1.5 bg-[#5865F2]/10 rounded-lg group-hover/btn:bg-[#5865F2]/20 transition-colors shrink-0">
+                                            <TensorLogo className="w-5 h-5 text-[#5865F2] transition-colors" />
+                                         </div>
+                                         <div className="text-left">
+                                            <span className="block text-sm md:text-base font-bold text-slate-900 dark:text-white group-hover/btn:text-[#5865F2] transition-colors whitespace-nowrap">Buy on Tensor</span>
+                                         </div>
+                                    </div>
+                                    <ExternalLink className="w-4 h-4 text-slate-300 group-hover/btn:text-[#5865F2] transition-colors ml-2" />
+                                </button>
+
+                                <button 
+                                    onClick={handleMagicEdenClick}
+                                    className="flex-1 group/btn relative flex items-center justify-between px-4 py-3 rounded-xl bg-white dark:bg-[#0A0E17] border border-[#E42575] hover:bg-[#E42575]/10 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-[#E42575]/20 hover:-translate-y-0.5"
+                                >
+                                    <div className="flex items-center gap-3">
+                                         <div className="p-1.5 bg-[#E42575]/10 rounded-lg group-hover/btn:bg-[#E42575]/20 transition-colors shrink-0">
+                                            <MagicEdenLogo className="w-5 h-5 text-[#E42575] transition-colors" />
+                                         </div>
+                                         <div className="text-left">
+                                            <span className="block text-sm md:text-base font-bold text-slate-900 dark:text-white group-hover/btn:text-[#E42575] transition-colors whitespace-nowrap">Buy on Magic Eden</span>
+                                         </div>
+                                    </div>
+                                    <ExternalLink className="w-4 h-4 text-slate-300 group-hover/btn:text-[#E42575] transition-colors ml-2" />
+                                </button>
+                             </div>
+                        </div>
+
+                        {/* RIGHT SIDE: HOW IT WORKS (SMALLER 5/12) */}
+                        <div className="lg:w-5/12 p-6 md:p-8 bg-slate-50/50 dark:bg-black/20 flex flex-col justify-center relative">
+                            
+                             <div className="mb-8">
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                                    How it works
+                                </h3>
+                             </div>
+
+                             <div className="relative flex flex-col gap-8">
+                                {/* Timeline Line */}
+                                <div className="absolute left-[15px] top-4 bottom-4 w-0.5 bg-slate-200 dark:bg-white/10"></div>
+
+                                {/* Step 1 */}
+                                <div className="flex gap-6 relative z-10">
+                                    <div className="w-8 h-8 rounded-full bg-white dark:bg-navy-900 border-2 border-blue-500 dark:border-blue-500 flex items-center justify-center text-xs font-bold text-blue-600 dark:text-white shrink-0 shadow-sm">1</div>
+                                    <div>
+                                        <p className="text-base font-bold text-slate-900 dark:text-white mb-1">Buy NFT</p>
+                                        <p className="text-sm text-slate-600 dark:text-gray-400 leading-snug">Purchase a P9 Node from the secondary market (Tensor or Magic Eden).</p>
+                                    </div>
+                                </div>
+
+                                {/* Step 2 */}
+                                <div className="flex gap-6 relative z-10">
+                                    <div className="w-8 h-8 rounded-full bg-white dark:bg-navy-900 border-2 border-slate-200 dark:border-white/20 flex items-center justify-center shrink-0">
+                                        <Check className="w-4 h-4 text-slate-400 dark:text-gray-400" />
+                                    </div>
+                                    <div>
+                                        <p className="text-base font-bold text-slate-900 dark:text-white mb-1">Check Status</p>
+                                        <p className="text-sm text-slate-600 dark:text-gray-400 leading-snug">
+                                            <span className="text-blue-600 dark:text-blue-400 font-medium">/checkrenewal </span> command on our Discord reveals if the node is active. <span className="text-blue-600 dark:text-blue-400 font-medium">Active nodes work instantly.</span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Step 3 */}
+                                <div className="flex gap-6 relative z-10">
+                                    <div className="w-8 h-8 rounded-full bg-white dark:bg-navy-900 border-2 border-slate-200 dark:border-white/20 flex items-center justify-center shrink-0">
+                                        <RefreshCw className="w-4 h-4 text-slate-400 dark:text-gray-400" />
+                                    </div>
+                                    <div>
+                                        <p className="text-base font-bold text-slate-900 dark:text-white mb-1">Activate / Renew</p>
+                                        <p className="text-sm text-slate-600 dark:text-gray-400 leading-snug">If frozen, pay renewal via our systems to activate access until the next expiration date.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
       </section>
 
-      {/* 2. HOW IT WORKS */}
-      <section className="max-w-4xl mx-auto px-6 mb-32 relative z-10">
-           <div className="bg-white dark:bg-[#050A14] border border-slate-200 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-sm">
-                <div className="flex items-center justify-center gap-3 mb-10">
-                    <Key className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white">How it works</h2>
-                </div>
-
-                <div className="relative flex flex-col md:flex-row justify-between items-start gap-12 md:gap-6">
-                    {/* Connecting Line (Desktop) */}
-                    <div className="hidden md:block absolute top-5 left-[15%] right-[15%] h-0.5 bg-slate-100 dark:bg-white/5 -z-0"></div>
-                    
-                    {/* Step 1 */}
-                    <div className="relative z-10 flex flex-col items-center text-center flex-1 w-full">
-                        <div className="w-10 h-10 rounded-full bg-white dark:bg-[#050A14] border-2 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)] flex items-center justify-center text-base font-bold text-blue-600 dark:text-white mb-4">1</div>
-                        <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1.5">Buy NFT</h3>
-                        <p className="text-xs text-slate-600 dark:text-gray-400 leading-relaxed max-w-[180px]">
-                            Purchase a P9 Node from the secondary market.
-                        </p>
-                    </div>
-
-                    {/* Step 2 */}
-                    <div className="relative z-10 flex flex-col items-center text-center flex-1 w-full">
-                        <div className="w-10 h-10 rounded-full bg-white dark:bg-[#050A14] border-2 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)] flex items-center justify-center mb-4 text-blue-500">
-                            <Check className="w-4 h-4" />
-                        </div>
-                        <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1.5">Check Status</h3>
-                        <p className="text-xs text-slate-600 dark:text-gray-400 leading-relaxed max-w-[180px]">
-                            Use <span className="text-blue-600 dark:text-blue-400 font-mono">/checkrenewal</span> in Discord. Active nodes work instantly.
-                        </p>
-                    </div>
-
-                    {/* Step 3 */}
-                    <div className="relative z-10 flex flex-col items-center text-center flex-1 w-full">
-                        <div className="w-10 h-10 rounded-full bg-white dark:bg-[#050A14] border-2 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)] flex items-center justify-center mb-4 text-blue-500">
-                            <RefreshCw className="w-4 h-4" />
-                        </div>
-                        <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1.5">Activate / Renew</h3>
-                        <p className="text-xs text-slate-600 dark:text-gray-400 leading-relaxed max-w-[180px]">
-                            If frozen, pay renewal via our dashboard to activate access.
-                        </p>
-                    </div>
-                </div>
-           </div>
-      </section>
-
-      {/* 3. ENDPOINTS & RATE LIMITS */}
+      {/* 2. ENDPOINTS & RATE LIMITS */}
       <section className="max-w-6xl mx-auto px-6 mb-32 relative z-10">
         <div className="flex items-center gap-4 mb-10">
              <div className="p-2 bg-blue-600 rounded-lg shadow-lg shadow-blue-600/20">
@@ -382,7 +411,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
         </div>
       </section>
 
-      {/* 4. TAILOR-MADE NETWORK */}
+      {/* 3. TAILOR-MADE NETWORK */}
       <section className="max-w-7xl mx-auto px-6 mb-32 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="order-2 lg:order-1 relative flex justify-center">
@@ -430,7 +459,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
           </div>
       </section>
 
-      {/* 5. COMPREHENSIVE FEATURES */}
+      {/* 4. COMPREHENSIVE FEATURES */}
       <section className="max-w-7xl mx-auto px-6 mb-16 relative z-10">
           
           <div className="max-w-2xl mx-auto relative z-10">
@@ -479,10 +508,10 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
          </div>
       </section>
 
-      {/* 6. CTA (Buy Now) */}
+      {/* 5. CTA (Buy Now) */}
       <section className="max-w-4xl mx-auto px-6 mb-32 relative z-10 flex justify-center">
         <button 
-            onClick={() => onBuyClick(PLANS[0])}
+            onClick={() => window.open('https://magiceden.io/marketplace/p9_nodes', '_blank')}
             className="group relative flex items-center justify-center gap-3 bg-slate-900 dark:bg-white text-white dark:text-navy-950 px-10 py-5 font-bold text-lg rounded-full shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_30px_rgba(255,255,255,0.15)] hover:shadow-[0_0_40px_rgba(59,130,246,0.6)] hover:scale-105 hover:bg-blue-600 dark:hover:bg-blue-500 hover:text-white dark:hover:text-white transition-all duration-300"
         >
             <span className="relative z-10">Buy P9 Node NFT</span>
@@ -490,8 +519,8 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
         </button>
       </section>
 
-      {/* 7. FAQ */}
-       <section className="max-w-4xl mx-auto px-6 relative z-10">
+      {/* 6. FAQ */}
+       <section className="max-w-4xl mx-auto px-6 pb-24 relative z-10">
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-10 text-center">FAQs</h3>
             <div className="grid gap-4">
                  <div className="bg-white dark:bg-[#050A14] border border-slate-200 dark:border-white/5 rounded-2xl p-6 md:p-8 hover:border-blue-400 dark:hover:border-blue-500/30 transition-colors shadow-sm">
@@ -531,4 +560,3 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
 };
 
 export default PlansPage;
-    
