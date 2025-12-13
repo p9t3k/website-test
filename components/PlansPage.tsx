@@ -416,7 +416,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="order-2 lg:order-1 relative flex justify-center">
                    <img 
-                       src="https://media.discordapp.net/attachments/688452602031112278/1442849009785110579/network.png?ex=69283eda&is=6926ed5a&hm=7665e6bf7aa03f3ed196930a002c0b064e566cc4e4135d6078080b7b845f8da7&=&format=webp&quality=lossless&width=1816&height=1816" 
+                       src="/assets/network.png"
                        alt="Tailor-made Network Cluster" 
                        className="relative z-10 w-full max-w-sm h-auto drop-shadow-2xl animate-float"
                    />
@@ -466,7 +466,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
                 {/* Banner Image - Positioned to blend */}
                 <div className="rounded-t-3xl overflow-hidden relative z-0 mb-[-20px] opacity-90 mx-4 border border-b-0 border-cyan-400/50">
                     <img 
-                        src="https://media.discordapp.net/attachments/688452602031112278/1442838289039228938/banner_p9nodes.png?ex=692834de&is=6926e35e&hm=18a50413392ea14c90b01cd2465d0552478b64fe7cadc0f9a33dc3b16a4abc6e&=&format=webp&quality=lossless&width=3228&height=1816" 
+                        src="/assets/banner_p9.png"
                         alt="P9 Nodes Features Banner" 
                         className="w-full h-auto object-cover"
                     />

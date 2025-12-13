@@ -6,8 +6,8 @@ interface HeroProps {
   onCtaClick: () => void;
 }
 
-const DARK_BG = "https://media.discordapp.net/attachments/688452602031112278/1443325440872808518/Senza_titolo_3.jpeg?ex=6928a910&is=69275790&hm=b2de8b8bce2f053dafd4ce45c9ac46178b8bb19a62a4df12c55a76640f2d4d1e&=&format=webp&width=3152&height=1774";
-const LIGHT_BG = "https://media.discordapp.net/attachments/688452602031112278/1443325440487067869/Senza_titolo_4.jpeg?ex=6928a910&is=69275790&hm=6cf36c87d9f1d9951801e614d36c214e273e1677b77244b0ac446f310eefe811&=&format=webp&width=3152&height=1774";
+const DARK_BG = "/assets/dark_bg.jpeg";
+const LIGHT_BG = "/assets/light_bg.jpeg";
 
 const KEYWORDS = ["Best", "Fastest", "Tailor-Made", "Unstoppable"];
 
@@ -109,7 +109,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
             <div className="relative flex justify-center items-center h-[300px] md:h-[500px] lg:h-[600px] opacity-0 animate-fade-in-up-delay">
                  
                  <img 
-                    src="https://media.discordapp.net/attachments/688452602031112278/1442849009310896189/first_modal.png?ex=69283eda&is=6926ed5a&hm=bac90b2aafef7492bdff4aacf154a4bf71ca57b839d6fdf4b2c7b3c77ba42c7b&=&format=webp&quality=lossless&width=1816&height=1816"
+                    src="/assets/first_modal.png"
                     alt="P9 Nodes Infrastructure"
                     className="relative z-10 w-full h-full object-contain drop-shadow-2xl animate-float lg:scale-125 origin-center"
                 />
