@@ -6,6 +6,9 @@ interface PlansPageProps {
   onBuyClick: (plan: any) => void;
 }
 
+const networkImg = '/assets/network.png';
+const bannerP9 = '/assets/banner_p9.png';
+
 // --- Icons & Logos ---
 
 const TensorLogo = ({ className }: { className?: string }) => (
@@ -416,7 +419,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="order-2 lg:order-1 relative flex justify-center">
                    <img 
-                       src="/assets/network.png"
+                       src={networkImg}
                        alt="Tailor-made Network Cluster" 
                        className="relative z-10 w-full max-w-sm h-auto drop-shadow-2xl animate-float"
                    />
@@ -466,7 +469,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onBuyClick }) => {
                 {/* Banner Image - Positioned to blend */}
                 <div className="rounded-t-3xl overflow-hidden relative z-0 mb-[-20px] opacity-90 mx-4 border border-b-0 border-cyan-400/50">
                     <img 
-                        src="/assets/banner_p9.png"
+                        src={bannerP9}
                         alt="P9 Nodes Features Banner" 
                         className="w-full h-auto object-cover"
                     />

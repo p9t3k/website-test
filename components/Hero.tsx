@@ -6,8 +6,9 @@ interface HeroProps {
   onCtaClick: () => void;
 }
 
-const DARK_BG = "/assets/dark_bg.jpeg";
-const LIGHT_BG = "/assets/light_bg.jpeg";
+const darkBg = '/assets/dark_bg.jpeg';
+const lightBg = '/assets/light_bg.jpeg';
+const firstModal = '/assets/first_modal.png';
 
 const KEYWORDS = ["Best", "Fastest", "Tailor-Made", "Unstoppable"];
 
@@ -51,13 +52,13 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
          {/* Light Mode Background */}
          <div 
              className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700 ease-in-out opacity-100 dark:opacity-0"
-             style={{ backgroundImage: `url('${LIGHT_BG}')` }}
+             style={{ backgroundImage: `url('${lightBg}')` }}
          />
          
          {/* Dark Mode Background */}
          <div 
              className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700 ease-in-out opacity-0 dark:opacity-100"
-             style={{ backgroundImage: `url('${DARK_BG}')` }}
+             style={{ backgroundImage: `url('${darkBg}')` }}
          />
 
          {/* Overlay for text contrast - Removed for Light Mode, Dark for Dark Mode */}
@@ -109,7 +110,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
             <div className="relative flex justify-center items-center h-[300px] md:h-[500px] lg:h-[600px] opacity-0 animate-fade-in-up-delay">
                  
                  <img 
-                    src="/assets/first_modal.png"
+                    src={firstModal}
                     alt="P9 Nodes Infrastructure"
                     className="relative z-10 w-full h-full object-contain drop-shadow-2xl animate-float lg:scale-125 origin-center"
                 />
