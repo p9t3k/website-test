@@ -6,8 +6,17 @@ interface PlansPageProps {
   onBuyClick: (plan: any) => void;
 }
 
-const networkImg = '/assets/network.png';
-const bannerP9 = '/assets/banner_p9.png';
+// Helper to determine base path (consistent with App.tsx)
+const getBasePath = () => {
+  const path = window.location.pathname;
+  if (path.startsWith('/website-test')) return '/website-test';
+  return '';
+};
+
+const BASE_PATH = getBasePath();
+
+const networkImg = `${BASE_PATH}/assets/network.png`;
+const bannerP9 = `${BASE_PATH}/assets/banner_p9.png`;
 
 // --- Icons & Logos ---
 

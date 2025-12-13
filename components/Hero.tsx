@@ -6,9 +6,18 @@ interface HeroProps {
   onCtaClick: () => void;
 }
 
-const darkBg = '/assets/dark_bg.jpeg';
-const lightBg = '/assets/light_bg.jpeg';
-const firstModal = '/assets/first_modal.png';
+// Helper to determine base path (consistent with App.tsx)
+const getBasePath = () => {
+  const path = window.location.pathname;
+  if (path.startsWith('/website-test')) return '/website-test';
+  return '';
+};
+
+const BASE_PATH = getBasePath();
+
+const darkBg = `${BASE_PATH}/assets/dark_bg.jpeg`;
+const lightBg = `${BASE_PATH}/assets/light_bg.jpeg`;
+const firstModal = `${BASE_PATH}/assets/first_modal.png`;
 
 const KEYWORDS = ["Best", "Fastest", "Tailor-Made", "Unstoppable"];
 
